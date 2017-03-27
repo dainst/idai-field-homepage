@@ -1,8 +1,9 @@
 import {Routes,RouterModule} from '@angular/router';
+import {ListingComponent} from "./listing/listing.component";
 
 
 const routes: Routes = [
-    { path: '', redirectTo: 'resources', pathMatch: 'full' },
+    { path: '', component: ListingComponent }
 ];
 
 export const appRoutingProviders: any[] = [];

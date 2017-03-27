@@ -1,6 +1,8 @@
 var gulp = require('gulp');
+var url = require('url');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
+var browserSync = require('browser-sync').create();
 var uglify = require('gulp-uglify');
 var typescript = require('gulp-typescript');
 var fs = require('fs');
@@ -9,6 +11,8 @@ var pkg = require('./package.json');
 var webserver = require('gulp-webserver');
 var argv = require('yargs').argv;
 var replace = require('gulp-replace');
+var proxy = require('proxy-middleware');
+var modRewrite = require('connect-modrewrite');
 
 // compile sass and concatenate to single css file in build dir
 gulp.task('convert-sass', function () {
@@ -35,12 +39,30 @@ function watch() {
 }
 
 gulp.task('webserver-watch', function () {
-    gulp.src('./') // Yes, ./ is right. While developing, for convenience reasons
-    // e2e tests should run against the base dir,
-    // instead the dist dir. Only in ci the dist has to be tested.
-        .pipe(webserver({
-            port: 8085
-        }));
+
+    var proxyOptions = url.parse('http://virginiaplain01.klassarchaeologie.uni-koeln.de/objects/');
+
+    proxyOptions.route = '/data';
+
+    browserSync.init({
+        server: {
+            baseDir: './',
+            middleware: [
+                proxy(proxyOptions),
+                // rewrite for AngularJS HTML5 mode, redirect all non-file urls to index.html
+                modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg|\\.gif|\\.json|\\.woff2|\\.woff|\\.ttf$ /index.html [L]'])
+            ]
+        },
+        port: 8085,
+        notify: false
+    });
+
+    // gulp.src('./') // Yes, ./ is right. While developing, for convenience reasons
+    // // e2e tests should run against the base dir,
+    // // instead the dist dir. Only in ci the dist has to be tested.
+    //     .pipe(webserver({
+    //         port: 8085
+    //     }));
     watch();
 });
 
@@ -67,41 +89,6 @@ gulp.task('compile', ['convert-sass'], function () {
         .src('test/**/*.ts')
         .pipe(typescript(tscConfig.compilerOptions))
         .pipe(gulp.dest('test/'));
-});
-
-// builds an electron app package for different platforms
-gulp.task('package', [], function () {
-
-    packager({
-        dir: 'dist/',
-        name: pkg.name,
-        platform: ['win32'],
-        arch: 'all',
-        version: '1.6.1',
-        appBundleId: pkg.name,
-        appVersion: pkg.version,
-        'download.cache': 'cache/',
-        helperBundleId: pkg.name,
-        icon: 'dist/img/logo',
-        out: 'release/'
-    }, function (err, appPath) {
-        if (err)
-            throw err;
-
-        var folderPaths = appPath.toString().split(',');
-        for (var i in folderPaths) {
-            var fileName = folderPaths[i].substring(folderPaths[i].lastIndexOf(path.sep) + 1);
-            var output = fs.createWriteStream('release/' + fileName + '.zip');
-
-            var archive = archiver('zip');
-            archive.on('error', function (err) {
-                throw err;
-            });
-            archive.pipe(output);
-            archive.directory(folderPaths[i], fileName, {'name': fileName});
-            archive.finalize();
-        }
-    });
 });
 
 function createConfig(path) {

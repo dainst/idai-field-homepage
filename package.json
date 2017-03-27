@@ -56,7 +56,9 @@
     "@types/papaparse": "4.1.28",
     "@types/pouchdb": "~5.4.28",
     "archiver": "1.1.0",
+    "browser-sync": "^2.18.8",
     "chromedriver": "2.25.1",
+    "connect-modrewrite": "^0.10.1",
     "gulp": "3.9.0",
     "gulp-concat": "2.6.0",
     "gulp-replace": "0.5.4",
@@ -72,6 +74,7 @@
     "protractor": "4.0.14",
     "protractor-console-plugin": "0.1.1",
     "protractor-fail-fast": "2.0.0",
+    "proxy-middleware": "^0.15.0",
     "rimraf": "2.5.4",
     "typescript": "2.1.5",
     "yargs": "5.0.0"

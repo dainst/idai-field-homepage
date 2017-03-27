@@ -87,6 +87,8 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.setConfig();
+
+
     }
 
     private setConfig() {
