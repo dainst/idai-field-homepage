@@ -14,6 +14,7 @@ import {AppComponent} from "./app.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {NavbarComponent} from "./navbar.component";
 import {JeremyHttpDatastore} from "./datastore/jeremy-http-datastore";
+import {TypeIconComponent,SearchBarComponent} from 'idai-components-2/widgets';
 
 import CONFIG = require("config/config.json!json");
 import {ListingComponent} from "./listing/listing.component";
@@ -31,7 +32,9 @@ import {ListingComponent} from "./listing/listing.component";
     declarations: [
         AppComponent,
         NavbarComponent,
-        ListingComponent
+        ListingComponent,
+        TypeIconComponent,
+        SearchBarComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

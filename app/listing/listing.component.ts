@@ -12,9 +12,17 @@ export class ListingComponent {
 
     public documents;
 
-    constructor(datastore: ReadDatastore) {
-        datastore.find(undefined).then(results => {
+    constructor(private datastore: ReadDatastore) {
+        this.find(undefined);
+    }
+
+    private find(q) {
+        this.datastore.find(q).then(results => {
             this.documents = results;
         },err=>console.log(err));
+    }
+
+    public queryChanged(a) {
+        this.find(a);
     }
 }
