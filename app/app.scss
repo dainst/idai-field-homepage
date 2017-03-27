@@ -1,0 +1,170 @@
+@import "idai-components-2";
+
+@import "materialdesignicons";
+
+@import "variables";
+@import "navbar";
+@import "spinner";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: Roboto, sans-serif !important;
+}
+
+#app {
+  margin-top: 57px;
+}
+
+#idaifieldlogo {
+  height: 35px;
+}
+
+.btn {
+  text-transform: none !important;
+  border-radius: 0 !important;
+}
+
+.btn-primary {
+  background-color: rgba(85, 114, 161, 1) !important;
+  border-color: rgba(85, 114, 161, 1) !important;
+}
+
+.btn-primary:hover {
+  background-color: lighten(rgba(85, 114, 161, 1), 10%) !important;
+}
+
+.md-form {
+  margin-bottom: 0 !important;
+}
+
+/* override needed for buttons to look good in chrome with bootstrap 4 */
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: none;
+}
+
+/* override popover styles */
+.popover {
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.3);
+  min-width: 200px;
+}
+
+.popover-content {
+  padding: 0 !important;
+}
+
+.popover-custom-title {
+  background-color: #eee;
+  padding: 10px;
+  font-weight: lighter;
+}
+
+.popover-custom-title {
+  font-size: 1.2em;
+  padding-bottom: 10px;
+}
+
+.popover-content .list-group {
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+}
+
+.popover-item {
+  cursor: pointer;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.popover-item:hover {
+  background-color: $list-item-hover-colour;
+  transition: background-color .65s ease;
+}
+
+/* Cards */
+/* override ugly styling of list-group-items inside cards in bootstrap 4 */
+.card > .list-group {
+  > .list-group-item {
+    border-width: 1px 0 0;
+  }
+  > .list-group-item:first-child {
+    border-width: 0;
+  }
+}
+
+.card {
+  border-radius: 0 !important;
+  border: none !important;
+  background-color: #eee !important;
+}
+
+.card-header {
+  border-radius: 0 !important;
+  padding: 5px 5px 2px 15px !important;
+}
+
+.card-title {
+  font-weight: normal !important;
+  font-size: 17px !important;
+  margin: 0 !important;
+  padding: 4px 0 7px 0 !important;
+}
+
+.card-block {
+  padding: 10px !important;
+}
+
+.card-block .form-control {
+  margin: 0 !important;
+  font-size: 13px;
+}
+
+.form-control {
+  border-radius: 1px !important;
+}
+
+.fieldcollapse {
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: bold !important;
+}
+
+/* Relation Picker */
+
+#relation-picker .btn-default {
+  margin: 0 0 0 10px !important;
+  padding: 5px 5px 5px 15px!important;
+  border-radius: 2px !important;
+}
+
+#relation-picker .badge {
+  background-color: transparent;
+}
+
+#relation-picker .delete-relation {
+  font-size: 18px !important;
+
+}
+
+.small-circular-button {
+  padding: 5px;
+}
+
+.relation-link:before {
+  color: #333;
+  margin-right: 5px;
+  margin-left: -10px;
+  content: '\2022';
+}
+
+relations-view .fieldvalue:hover {
+  background-color: #ddd;
+}
