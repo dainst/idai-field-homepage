@@ -3,10 +3,8 @@
             (onQueryChanged)="queryChanged($event)">
 </search-bar>
 
-<div class="list-group">
-    <a *ngFor="let document of documents" class="list-group-item list-group-item-action" [routerLink]="['/home/show/'+document.resource.id]">
-        {{document.resource.type}} - {{document.resource.identifier}} - {{document.resource.shortDescription}}
-    </a>
-</div>
+<a *ngFor="let document of documents" class="list-group-item list-group-item-action" [routerLink]="['/home/show/'+document.resource.id]">
+    {{document.resource.type}} - {{document.resource.identifier}} - {{document.resource.shortDescription}}
+</a>
 
 <router-outlet></router-outlet>
