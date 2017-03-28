@@ -1,1 +1,8 @@
-hier
+<div *ngIf="doc">
+    <p>id: {{doc.resource.id}}</p>
+    <p>type: {{doc.resource.type}}</p>
+    <p>identifier: {{doc.resource.identifier}}</p>
+    <p>shortDescription: {{doc.resource.shortDescription}}</p>
+</div>
+
+<fields-view [doc]="doc"></fields-view>

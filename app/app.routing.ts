@@ -15,7 +15,7 @@ const routes: Routes = [
         path: 'home',
         component: WrapperComponent,
         children: [{ path: '', redirectTo: 'show'},{
-            path: 'show',
+            path: 'show/:id',
             component: ViewComponent
         }]
     }
