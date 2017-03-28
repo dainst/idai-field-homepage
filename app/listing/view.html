@@ -1,8 +1,11 @@
+<br>
+<h1>Detailansicht</h1>
+<br>
+
 <div *ngIf="doc">
-    <p>id: {{doc.resource.id}}</p>
-    <p>type: {{doc.resource.type}}</p>
-    <p>identifier: {{doc.resource.identifier}}</p>
-    <p>shortDescription: {{doc.resource.shortDescription}}</p>
+    <p><type-icon [type]="doc.resource.type" size="30"></type-icon> {{doc.resource.type}}</p>
+    <p>Identifier: {{doc.resource.identifier}}</p>
+    <p>Kurzbeschreibung: {{doc.resource.shortDescription}}</p>
 </div>
 
 <fields-view [doc]="doc"></fields-view>
