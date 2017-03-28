@@ -3,6 +3,7 @@ import {ReadDatastore} from 'idai-components-2/datastore';
 
 @Component({
     moduleId: module.id,
+    selector: 'listing',
     templateUrl: './listing.html'
 })
 /**

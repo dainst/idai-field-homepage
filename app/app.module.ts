@@ -18,6 +18,8 @@ import {TypeIconComponent,SearchBarComponent} from 'idai-components-2/widgets';
 
 import CONFIG = require("config/config.json!json");
 import {ListingComponent} from "./listing/listing.component";
+import {ViewComponent} from "./listing/view-component";
+import {WrapperComponent} from "./listing/wrapper-component";
 
 @NgModule({
     imports: [
@@ -32,7 +34,9 @@ import {ListingComponent} from "./listing/listing.component";
     declarations: [
         AppComponent,
         NavbarComponent,
-        ListingComponent,
+        ListingComponent, // TODO necessary here when shown in outlet?
+        ViewComponent, // TODO ?
+        WrapperComponent,
         TypeIconComponent,
         SearchBarComponent
     ],
