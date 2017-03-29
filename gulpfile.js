@@ -46,7 +46,7 @@ gulp.task('webserver-watch', function () {
             open: 'http://localhost:8085',
             proxies: [
                 {
-                    source: '/data', target: 'http://virginiaplain01.klassarchaeologie.uni-koeln.de/'
+                    source: '/data', target: 'http://virginiaplain01.klassarchaeologie.uni-koeln.de/data/'
                 }
             ]
         }));

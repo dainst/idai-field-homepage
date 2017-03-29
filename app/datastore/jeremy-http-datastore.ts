@@ -15,7 +15,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
 
     get(resourceId: string): Promise<Document> {
         return new Promise<any>((resolve,reject)=>{
-            const querystring = '/object/'+resourceId;
+            const querystring = '/data/object/'+resourceId;
             this.http.get(querystring,
             ).subscribe(response => {
                 resolve(JSON.parse(response['_body']))
@@ -29,8 +29,8 @@ export class JeremyHttpDatastore implements ReadDatastore {
             let type = 'object';
             if (query && query.type) type = query.type;
 
-            if (query && query.q) querystring = '/' + type + '/?q='+query.q+'*';
-            else querystring = '/' + type + '/?q=*';
+            if (query && query.q) querystring = '/data/' + type + '/?q='+query.q+'*';
+            else querystring = '/data/' + type + '/?q=*';
 
             this.http.get(querystring,
                 ).subscribe(response => {
