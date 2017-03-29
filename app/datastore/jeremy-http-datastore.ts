@@ -26,8 +26,11 @@ export class JeremyHttpDatastore implements ReadDatastore {
     find(query: Query, offset?: number, limit?: number): Promise<Document[]> {
         return new Promise<any>((resolve,reject)=>{
             let querystring;
-            if (query && query.q) querystring = '/object/?q='+query.q+'*';
-            else querystring = '/object/?q=*';
+            let type = 'object';
+            if (query && query.type) type = query.type;
+
+            if (query && query.q) querystring = '/' + type + '/?q='+query.q+'*';
+            else querystring = '/' + type + '/?q=*';
 
             this.http.get(querystring,
                 ).subscribe(response => {
