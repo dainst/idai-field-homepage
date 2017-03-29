@@ -2,23 +2,23 @@ import {Routes,RouterModule} from '@angular/router';
 import {ListingComponent} from "./listing/listing.component";
 import {ViewComponent} from "./listing/view-component";
 import {WrapperComponent} from "./listing/wrapper-component";
+import {WelcomeComponent} from "./welcome.component";
+import {NothingComponent} from "./listing/nothing.component";
 
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
+        component: WelcomeComponent,
     },
     {
-
-        path: 'home',
+        path: 'resources',
         component: WrapperComponent,
-        children: [{ path: '', redirectTo: 'show'},{
+        children: [{
             path: 'show/:id',
             component: ViewComponent
-        }]
-    }
+        },{ path: '', component: NothingComponent}]
+    },
 ];
 
 export const appRoutingProviders: any[] = [];

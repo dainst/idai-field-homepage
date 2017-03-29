@@ -20,6 +20,8 @@ import CONFIG = require("config/config.json!json");
 import {ListingComponent} from "./listing/listing.component";
 import {ViewComponent} from "./listing/view-component";
 import {WrapperComponent} from "./listing/wrapper-component";
+import {WelcomeComponent} from "./welcome.component";
+import {NothingComponent} from "./listing/nothing.component";
 
 @NgModule({
     imports: [
@@ -38,7 +40,9 @@ import {WrapperComponent} from "./listing/wrapper-component";
         ViewComponent, // TODO ?
         WrapperComponent,
         TypeIconComponent,
-        SearchBarComponent
+        SearchBarComponent,
+        WelcomeComponent,
+        NothingComponent,
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
