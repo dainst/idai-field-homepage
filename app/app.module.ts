@@ -14,7 +14,7 @@ import {AppComponent} from "./app.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {NavbarComponent} from "./navbar.component";
 import {JeremyHttpDatastore} from "./datastore/jeremy-http-datastore";
-import {TypeIconComponent,SearchBarComponent} from 'idai-components-2/widgets';
+import {IdaiWidgetsModule} from 'idai-components-2/widgets';
 
 import CONFIG = require("config/config.json!json");
 import {ListingComponent} from "./listing/listing.component";
@@ -31,6 +31,7 @@ import {NothingComponent} from "./listing/nothing.component";
         NgbModule.forRoot(),
         IdaiDocumentsModule,
         IdaiMessagesModule,
+        IdaiWidgetsModule,
         routing
     ],
     declarations: [
@@ -39,8 +40,6 @@ import {NothingComponent} from "./listing/nothing.component";
         ListingComponent, // TODO necessary here when shown in outlet?
         ViewComponent, // TODO ?
         WrapperComponent,
-        TypeIconComponent,
-        SearchBarComponent,
         WelcomeComponent,
         NothingComponent,
     ],
