@@ -22,7 +22,13 @@ export class ListingComponent {
     }
 
     private find(q) {
-        if (!q || !q.type) return;
+        if (!q) {
+            q = {
+                type: '_'
+            }
+        }
+        if (q.type == 'resource') q.type = '_';
+
         this.datastore.find(q).then(results => {
             this.hinweis = undefined;
             this.documents = results;
@@ -33,11 +39,13 @@ export class ListingComponent {
     }
 
     public queryChanged(q) {
-        if (!q || !q.type || q.type=='resource') {
+
+        if (!q) {
             this.documents = [];
             this.hinweis = ListingComponent.HINWEIS;
             return this.router.navigate(['resources']);
         }
+
         this.find(q);
     }
 }
