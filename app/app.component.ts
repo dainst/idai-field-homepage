@@ -4,6 +4,7 @@ import {Messages} from 'idai-components-2/messages';
 import {ConfigLoader,
     ConfigurationPreprocessor,
     ConfigurationValidator} from 'idai-components-2/configuration';
+import {AppConfigurator} from 'idai-components-2/idai-field-model';
 
 @Component({
     moduleId: module.id,
@@ -19,58 +20,14 @@ export class AppComponent implements OnInit {
 
     public static PROJECT_CONFIGURATION_PATH = 'config/Configuration.json';
 
-    private defaultTypes = [{
-        "type": "image",
-        "fields": [
-            {
-                name: "height",
-                editable: false,
-                label: "Höhe"
-            },
-            {
-                name: "width",
-                editable: false,
-                label: "Breite"
-            },
-            {
-                name : "filename",
-                editable: false,
-                label: "Dateiname"
-            },
-            {
-                name: "georeference",
-                visible: false,
-                editable: false,
-            }
-        ]
-    }];
-
-    private defaultFields = [{
-        name: "shortDescription",
-        label: "Kurzbeschreibung",
-        visible: false
-    }, {
-        name: "identifier",
-        description: "use this to uniquely identify your object",
-        label: "Identifier",
-        visible: false,
-        mandatory: true
-    }, {
-        name: "geometry",
-        visible: false,
-        editable: false
-    }];
-
-    private defaultRelations = [
-        {name: 'depicts', domain: ['image:inherit'], inverse: 'depictedIn', label: 'Zeigt', editable: true},
-        {name: 'depictedIn', range: ['image:inherit'], inverse: 'depicts', visible: false, editable: false}
-    ];
-
-
     constructor(@Inject('app.config') private config,
                 private configLoader: ConfigLoader,
                 private router: Router,
-                private messages: Messages) {
+                private messages: Messages,
+                private appConfigurator: AppConfigurator
+
+
+    ) {
 
         // To get rid of stale messages when changing routes.
         // Note that if you want show a message to the user
@@ -86,24 +43,16 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.setConfig();
-
-
-    }
-
-    private setConfig() {
-
-        this.configLoader.go(
-            AppComponent.PROJECT_CONFIGURATION_PATH,
-            new ConfigurationPreprocessor(
-                this.defaultTypes,
-                this.defaultFields,
-                this.defaultRelations)
-            ,
-            new ConfigurationValidator([])
-        );
-        this.configLoader.getProjectConfiguration().catch(msgWithParams => {
+        this.appConfigurator.go(AppComponent.PROJECT_CONFIGURATION_PATH);
+        this.configLoader.getProjectConfiguration().then(
+            conf => {
+                if (!conf.getProjectIdentifier()) {
+                    // this.messages.add([M.APP_NO_PROJECT_IDENTIFIER]);
+                }
+            }
+        ).catch(msgWithParams => {
             this.messages.add(msgWithParams);
         });
+
     }
 }

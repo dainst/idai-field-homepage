@@ -22,6 +22,7 @@ import {ViewComponent} from "./listing/view-component";
 import {WrapperComponent} from "./listing/wrapper-component";
 import {WelcomeComponent} from "./welcome.component";
 import {NothingComponent} from "./listing/nothing.component";
+import {AppConfigurator} from 'idai-components-2/idai-field-model';
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import {NothingComponent} from "./listing/nothing.component";
         PersistenceManager,
         DocumentEditChangeMonitor,
         { provide: MD, useClass: M},
-        appRoutingProviders
+        appRoutingProviders,
+        AppConfigurator
     ],
     bootstrap: [ AppComponent ]
 })
