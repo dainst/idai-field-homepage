@@ -45,7 +45,8 @@ import {NothingComponent} from "./listing/nothing.component";
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        { provide: ReadDatastore, useClass: JeremyHttpDatastore },
+        JeremyHttpDatastore,
+        { provide: ReadDatastore, useExisting: JeremyHttpDatastore },
         Messages,
         { provide: 'app.config', useValue: CONFIG },
         ConfigLoader,

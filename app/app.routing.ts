@@ -15,7 +15,7 @@ const routes: Routes = [
         path: 'resources',
         component: WrapperComponent,
         children: [{
-            path: 'show/:id',
+            path: 'show/:type/:id',
             component: ViewComponent
         },{ path: '', component: NothingComponent}]
     },

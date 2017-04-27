@@ -14,8 +14,12 @@ export class JeremyHttpDatastore implements ReadDatastore {
     constructor(private http:Http) { }
 
     get(resourceId: string): Promise<Document> {
+        return undefined;
+    }
+
+    getWithType(type:string, resourceId: string): Promise<Document> {
         return new Promise<any>((resolve,reject)=>{
-            const querystring = '/data/object/'+resourceId;
+            const querystring = '/data/'+type+'/'+resourceId;
             this.http.get(querystring,
             ).subscribe(response => {
                 resolve(JSON.parse(response['_body']))
