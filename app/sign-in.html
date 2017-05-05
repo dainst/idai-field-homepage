@@ -1,0 +1,12 @@
+<h2>Anmelden</h2>
+
+<div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" required #usr>
+</div>
+<div class="form-group">
+    <label for="password">Passwort</label>
+    <input type="text" class="form-control" id="password" required #pwd>
+</div>
+
+<button type="submit" (click) = 'go(usr.value,pwd.value)'>Add</button>

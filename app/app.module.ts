@@ -23,6 +23,8 @@ import {WrapperComponent} from "./listing/wrapper-component";
 import {WelcomeComponent} from "./welcome.component";
 import {NothingComponent} from "./listing/nothing.component";
 import {AppConfigurator} from 'idai-components-2/idai-field-model';
+import {SignInComponent} from "./sign-in-component";
+import {AuthService} from "./auth-service";
 
 @NgModule({
     imports: [
@@ -43,19 +45,21 @@ import {AppConfigurator} from 'idai-components-2/idai-field-model';
         WrapperComponent,
         WelcomeComponent,
         NothingComponent,
+        SignInComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         JeremyHttpDatastore,
         { provide: ReadDatastore, useExisting: JeremyHttpDatastore },
         Messages,
+        { provide: MD, useClass: M},
         { provide: 'app.config', useValue: CONFIG },
         ConfigLoader,
         PersistenceManager,
         DocumentEditChangeMonitor,
-        { provide: MD, useClass: M},
         appRoutingProviders,
-        AppConfigurator
+        AppConfigurator,
+        AuthService,
     ],
     bootstrap: [ AppComponent ]
 })

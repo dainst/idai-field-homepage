@@ -3,6 +3,7 @@ import {Query} from "idai-components-2/datastore";
 import {Document} from "idai-components-2/core";
 import {ReadDatastore} from 'idai-components-2/datastore'
 import {Injectable} from "@angular/core";
+import {AuthService} from "../auth-service";
 
 
 @Injectable()
@@ -11,7 +12,10 @@ import {Injectable} from "@angular/core";
  */
 export class JeremyHttpDatastore implements ReadDatastore {
 
-    constructor(private http:Http) { }
+    constructor(
+        private http:Http,
+        private authService: AuthService
+    ) { }
 
     get(resourceId: string): Promise<Document> {
         return undefined;
@@ -28,6 +32,9 @@ export class JeremyHttpDatastore implements ReadDatastore {
     }
 
     find(query: Query, offset?: number, limit?: number): Promise<Document[]> {
+
+        let headers = this.authService.getCredentials();
+
         return new Promise<any>((resolve,reject)=>{
             let querystring;
             let type = 'object';
@@ -36,7 +43,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
             if (query && query.q) querystring = '/data/' + type + '/?q='+query.q+'*';
             else querystring = '/data/' + type + '/?q=*';
 
-            this.http.get(querystring,
+            this.http.get(querystring,{headers: headers}
                 ).subscribe(response => {
                 let objects = JSON.parse(response['_body']).results;
 

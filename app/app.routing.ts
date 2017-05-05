@@ -4,6 +4,7 @@ import {ViewComponent} from "./listing/view-component";
 import {WrapperComponent} from "./listing/wrapper-component";
 import {WelcomeComponent} from "./welcome.component";
 import {NothingComponent} from "./listing/nothing.component";
+import {SignInComponent} from "./sign-in-component";
 
 
 const routes: Routes = [
@@ -17,8 +18,16 @@ const routes: Routes = [
         children: [{
             path: 'show/:type/:id',
             component: ViewComponent
-        },{ path: '', component: NothingComponent}]
+        },
+        {
+            path: '',
+            component: NothingComponent
+        }]
     },
+    {
+        path: 'sign_in',
+        component: SignInComponent
+    }
 ];
 
 export const appRoutingProviders: any[] = [];
