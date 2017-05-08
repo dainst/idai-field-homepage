@@ -1,4 +1,13 @@
-<div style="font-size:10px;" class="float-lg-right" >{{hinweis}}</div>
+<div>
+    <label>Projekt</label>
+    <div *ngFor="let project of projects">
+        <label>
+            <input type="radio" name="gender" [(ngModel)]="selectedProject" [value]="project.value" (change)="radioSelect($event)">
+            {{project.display}}
+        </label>
+    </div>
+</div>
+
 <search-bar [showFiltersMenu]="true"
             [defaultFilterSet]="defaultTypes"
             (onQueryChanged)="queryChanged($event)">
