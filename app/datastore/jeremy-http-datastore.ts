@@ -37,7 +37,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
             let querystring;
             let type = 'object';
             if (query && query.type) type = query.type;
-            
+
             let q = query.q;
             if (q == undefined || q == "") {
                 q = "*";
