@@ -24,7 +24,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
     getWithType(type:string, resourceId: string): Promise<Document> {
         return new Promise<any>((resolve,reject)=>{
             const querystring = '/data/'+type+'/'+resourceId;
-            this.http.get(querystring,
+            this.http.get(querystring,{headers:this.authService.getHeaders()}
             ).subscribe(response => {
                 resolve(JSON.parse(response['_body']))
             },error=>reject(error));
@@ -32,8 +32,6 @@ export class JeremyHttpDatastore implements ReadDatastore {
     }
 
     find(query: Query, offset?: number, limit?: number): Promise<Document[]> {
-
-        let headers = this.authService.getCredentials();
 
         return new Promise<any>((resolve,reject)=>{
             let querystring;
@@ -43,7 +41,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
             if (query && query.q) querystring = '/data/' + type + '/?q='+query.q+'*';
             else querystring = '/data/' + type + '/?q=*';
 
-            this.http.get(querystring,{headers: headers}
+            this.http.get(querystring,{headers: this.authService.getHeaders()}
                 ).subscribe(response => {
                 let objects = JSON.parse(response['_body']).results;
 

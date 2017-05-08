@@ -36,7 +36,7 @@ export class AuthService {
 
     }
 
-    public getCredentials() {
+    public getHeaders() {
         return this.headers;
     }
 }
