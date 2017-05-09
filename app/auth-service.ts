@@ -11,9 +11,14 @@ import {Injectable} from "@angular/core";
  */
 export class AuthService {
 
-    constructor(private http:Http) { }
-
     private headers = new Headers();
+
+    constructor(private http:Http) {
+        let authInfo = localStorage.getItem("Authorization");
+        if (authInfo) {
+            this.headers.append("Authorization", authInfo);
+        }
+    }
 
     public setCredentials(usr,pwd) {
 
@@ -26,6 +31,7 @@ export class AuthService {
             this.http.get(querystring,{headers:headers}).subscribe(
                 response => {
                     this.headers = headers;
+                    localStorage.setItem("Authorization","Basic " + btoa(usr+":"+pwd));
                     resolve();
                 },
                 error=>{
