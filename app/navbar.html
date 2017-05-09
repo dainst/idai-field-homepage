@@ -22,8 +22,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="#" routerLink="/resources">Ressourcen</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="username == undefined">
                 <a class="nav-link" href="#" routerLink="/sign_in">Anmelden</a>
+            </li>
+            <li class="nav-item" *ngIf="username != undefined">
+                <a class="nav-link" href="#" (click)="signOut()">{{username}}</a>
             </li>
         </ul>
     </div>

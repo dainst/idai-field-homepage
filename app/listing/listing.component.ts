@@ -34,7 +34,6 @@ export class ListingComponent {
     }
 
     private find(q) {
-        console.log("this.selec",this.selectedProject)
         if (!q) {
             q = {
                 type: '_'

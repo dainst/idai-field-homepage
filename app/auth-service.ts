@@ -1,9 +1,6 @@
 import {Http,Headers} from '@angular/http';
-import {Query} from "idai-components-2/datastore";
-import {Document} from "idai-components-2/core";
-import {ReadDatastore} from 'idai-components-2/datastore'
 import {Injectable} from "@angular/core";
-
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 /**
@@ -12,6 +9,8 @@ import {Injectable} from "@angular/core";
 export class AuthService {
 
     private headers = new Headers();
+    private userObservers = [];
+
 
     constructor(private http:Http) {
         let authInfo = localStorage.getItem("Authorization");
@@ -32,14 +31,39 @@ export class AuthService {
                 response => {
                     this.headers = headers;
                     localStorage.setItem("Authorization","Basic " + btoa(usr+":"+pwd));
+                    localStorage.setItem("user",usr);
+                    for (let userObserver of this.userObservers) {
+                       userObserver.next(usr);
+                    }
                     resolve();
                 },
                 error=>{
+                    for (let userObserver of this.userObservers) {
+                        userObserver.next(undefined);
+                    }
                     reject();
                 }
             );
         })
 
+    }
+
+    public signOut() {
+        this.headers = new Headers();
+        localStorage.removeItem("Authorization");
+        localStorage.removeItem("user");
+        for (let userObserver of this.userObservers) {
+            userObserver.next(undefined);
+        }
+    }
+
+    public username() {
+        return new Observable(observer=>{
+            this.userObservers.push(observer);
+            if (localStorage.getItem("user")) {
+                observer.next(localStorage.getItem("user"));
+            }
+        })
     }
 
     public getHeaders() {
