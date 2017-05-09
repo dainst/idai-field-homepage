@@ -1,11 +1,22 @@
-<div>
-    <label>Projekt</label>
-    <div *ngFor="let project of projects">
-        <label>
-            <input type="radio" name="gender" [(ngModel)]="selectedProject" [value]="project.value" (change)="radioSelect($event)">
-            {{project.display}}
-        </label>
+<div class="row">
+
+    <div class="form-group">
+
+        <label for="projectselect">Projekt:</label>
+
+        <select class="form-control"
+                id="projectselect"
+                [(ngModel)]="selectedProject"
+                (ngModelChange)="selectProject($event)">
+
+            <option *ngFor="let project of projects"
+                    [ngValue]="project.value">
+                    {{project.display}}
+            </option>
+        </select>
+
     </div>
+
 </div>
 
 <search-bar [showFiltersMenu]="true"

@@ -64,7 +64,7 @@ export class ListingComponent {
         this.find(q);
     }
 
-    public radioSelect(event) {
+    public selectProject(event) {
         this.find(this.q);
     }
 }
