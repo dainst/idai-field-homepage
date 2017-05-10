@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 
 @Component({
     moduleId: module.id,
-    selector: 'listing',
+    selector: 'project-listing',
     templateUrl: './listing.html'
 })
 /**
