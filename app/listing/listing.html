@@ -1,28 +1,53 @@
-<div class="form-group row" id="project-list">
+<div class="form-group row" id="objectOverview">
 
-    <label for="projectselect">Projekt:</label>
-    <select class="form-control"
-            id="projectselect"
-            [(ngModel)]="selectedProject"
-            (ngModelChange)="selectProject($event)">
+    <aside>
+        <header>
+            <h1>
+                <span class="mdi mdi-view-list"></span>
+                Ressourcen
+            </h1>
+        </header>
 
-        <option *ngFor="let project of projects"
-                [ngValue]="project.value">
-            {{project.display}}
-        </option>
-    </select>
+        <main>
+
+            <div class="row" id="project-switch">
+                <div class="col-md-3">
+                    <label for="projectselect" id="project-label">Projekt:</label>
+                </div>
+                <div class="col-md-9">
+                    <select class="form-control"
+                            id="projectselect"
+                            [(ngModel)]="selectedProject"
+                            (ngModelChange)="selectProject($event)">
+
+                        <option *ngFor="let project of projects"
+                                [ngValue]="project.value">
+                            {{project.display}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <search-bar [showFiltersMenu]="true"
+                        [defaultFilterSet]="defaultTypes"
+                        (onQueryChanged)="queryChanged($event)">
+            </search-bar>
+
+            <ul class="list-group object-list" id="objectList" style="overflow: scroll;">
+                <li *ngFor="let document of documents; let index=index"
+                    class="list-group-item">
+
+                    <a [routerLink]="['/resources/show/'+document.resource.type+'/'+document.resource.id]">
+                        {{document.dataset}} -- {{document.resource.type}} - {{document.resource.identifier}} -
+                        {{document.resource.shortDescription}}
+                    </a>
+
+                </li>
+            </ul>
+
+        </main>
+    </aside>
 
 </div>
-
-<search-bar [showFiltersMenu]="true"
-            [defaultFilterSet]="defaultTypes"
-            (onQueryChanged)="queryChanged($event)">
-</search-bar>
-
-<a *ngFor="let document of documents" class="list-group-item list-group-item-action"
-   [routerLink]="['/resources/show/'+document.resource.type+'/'+document.resource.id]">
-    {{document.dataset}} -- {{document.resource.type}} - {{document.resource.identifier}} -
-    {{document.resource.shortDescription}}
-</a>
 
 <router-outlet></router-outlet>

@@ -1,3 +1,107 @@
-#project-list label {
-  padding-top: 6px;
+#project-label {
+  padding: 8px 5px 0 2px;
+}
+
+#project-switch {
+  border-bottom: 1px solid #fff;
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+}
+
+#objectOverview {
+  padding: 0 !important;
+  background-color: #eee;
+}
+
+#objectOverview aside {
+  width: 100%;
+}
+
+#objectOverview header {
+  background-color: #eee;
+  padding: 7px;
+  color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+#objectOverview header .mdi {
+  display: inline-block;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #294b83;
+  padding: 10px 10px 10px 11px;
+  margin-right: 5px;
+}
+
+#objectOverview header h1 {
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+  background-color: #657faa;
+}
+
+#objectOverview main {
+  padding: 7px;
+}
+
+#objectOverview .object-list {
+  height: calc(100vh - 275px);
+  overflow: auto;
+}
+
+#objectOverview .object-list .list-group-item {
+  cursor: pointer;
+  border: 0;
+  border-radius: 0;
+  margin: 1px 0;
+  font-size: 1em;
+  padding: 10px 5px 10px 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  min-height: 60px;
+}
+
+#objectOverview .object-list .list-group-item:hover {
+  background-color: #e1e1e1;
+  transition: background-color .65s ease;
+}
+
+#objectOverview .object-list .selected {
+  background-color: #e1e1e1;
+}
+
+#objectOverview .object-list .title {
+  color: #111;
+}
+
+#objectOverview .object-list .identifier {
+  font-size: 0.7em;
+  color: #999;
+}
+
+#objectOverview .object-list .new {
+  color: #111;
+  font-style: italic;
+}
+
+#objectOverview .object-list .conflicted {
+  border-right: 2px solid red !important;
+  transition: border-right 1s ease;
+}
+
+#objectOverview .object-list .synced {
+  border-right: 2px solid #657faa;
+  transition: border-right 1s ease;
+}
+
+#objectOverview .object-list .unsynced {
+  border-right: 2px solid #ccc;
+  transition: border-right 1s ease;
+}
+
+#searchfilter type-icon img {
+  width: 21px;
+  height: 21px;
 }

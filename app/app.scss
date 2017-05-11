@@ -167,3 +167,11 @@ html [type="button"],
 relations-view .fieldvalue:hover {
   background-color: #ddd;
 }
+
+a {
+  color: $primary-color;
+}
+
+a:hover {
+  text-decoration: none;
+}
