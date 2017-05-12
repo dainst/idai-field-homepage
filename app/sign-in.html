@@ -1,12 +1,23 @@
-<h2>Anmelden</h2>
+<div id="sign-in">
 
-<div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" required #usr>
-</div>
-<div class="form-group">
-    <label for="password">Passwort</label>
-    <input type="text" class="form-control" id="password" required #pwd>
-</div>
+    <header>
+        <h1>
+            <span class="mdi mdi-login"></span>
+            Anmelden</h1>
+    </header>
 
-<button type="submit" (click) = 'go(usr.value,pwd.value)'>Anmelden</button>
+    <main>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" required #usr>
+        </div>
+        <div class="form-group">
+            <label for="password">Passwort</label>
+            <input type="text" class="form-control" id="password" required #pwd>
+        </div>
+
+        <button type="submit" (click)='go(usr.value,pwd.value)'>Anmelden</button>
+
+    </main>
+
+</div>
