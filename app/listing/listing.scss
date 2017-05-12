@@ -44,8 +44,8 @@
   padding: 7px;
 }
 
-#objectOverview .object-list {
-  height: calc(100vh - 275px);
+#objectOverview ul#objectList {
+  height: calc(100vh - 245px);
   overflow: auto;
 }
 
