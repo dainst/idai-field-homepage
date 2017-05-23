@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {ReadDatastore} from 'idai-components-2/datastore';
 import {Document} from 'idai-components-2/core';
 
@@ -14,7 +15,9 @@ export class WelcomeComponent implements OnInit {
 
     private documents: Array<Document>;
 
-    constructor(private datastore: ReadDatastore) {}
+    constructor(private datastore: ReadDatastore,
+                private router: Router
+    ) {}
 
     ngOnInit() {
 
@@ -22,6 +25,11 @@ export class WelcomeComponent implements OnInit {
             documents => this.documents = documents,
             err => console.error(err)
         )
+    }
+
+    public showDocument(document: Document) {
+
+        this.router.navigate(['resources/show/' + document.resource.type + '/' + document.resource.id]);
     }
 
 }
