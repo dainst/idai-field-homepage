@@ -29,7 +29,8 @@ export class ListingComponent {
     public selectedProject = 'all';
     private q;
 
-    constructor(private datastore: ReadDatastore,private router:Router) {
+    constructor(private datastore: ReadDatastore,
+                private router: Router) {
         this.find(undefined);
     }
 
@@ -48,7 +49,7 @@ export class ListingComponent {
         this.datastore.find(q).then(results => {
             this.documents = results;
             this.q = q;
-        },err=>{
+        }, err => {
             console.log(err)
         });
     }
