@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component} from '@angular/core';
 import {ReadDatastore} from 'idai-components-2/datastore';
 import {Router} from '@angular/router';
 
@@ -13,7 +13,6 @@ import {Router} from '@angular/router';
 export class ListingComponent {
 
     public documents;
-    public defaultTypes;
 
     public projects = [
         { value: 'all', display: 'Alle' },
