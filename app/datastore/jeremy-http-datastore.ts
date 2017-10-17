@@ -36,7 +36,9 @@ export class JeremyHttpDatastore implements ReadDatastore {
         return new Promise<any>((resolve,reject)=>{
             let querystring;
             let type = 'object';
-            if (query && query.type) type = query.type;
+            if (query && query.type) {
+                type = query.type;
+            }
 
             let q = query.q;
             if (q == undefined || q == "") {
@@ -45,13 +47,13 @@ export class JeremyHttpDatastore implements ReadDatastore {
                 q = query.q + "*";
             }
 
-            if (query['project']) {
-                if (q.indexOf('*')==0) {
-                    q = "dataset:"+query['project'];
-                } else {
-                    q = "\""+q+" AND dataset:"+query['project']+"\"";
-                }
+            if (query['project'] !== undefined) {
+                q = q+" AND dataset:\""+query['project']+"\"";
             }
+            if (query['type'] !== undefined) {
+                q = q+" AND resource.type:"+query['type'];
+            }
+
             querystring = '/data/resource/?q='+q;
             console.log(querystring)
             this.http.get(querystring,{headers: this.authService.getHeaders()}

@@ -31,7 +31,6 @@ export class ListingComponent {
     private find(q) {
         if (!q) {
             q = {
-                type: '_'
             }
         }
         if (q.type == 'resource') q.type = '_';
