@@ -18,22 +18,14 @@ export class ViewComponent implements OnInit {
     constructor(private route: ActivatedRoute,private router: Router, private datastore: JeremyHttpDatastore) { }
 
     ngOnInit() {
-        this.router.events.subscribe((val) => {
 
-                if (!this.inLoop) {
-                    this.inLoop = true;
-                    if (val instanceof NavigationEnd) {
-                        this.route.params.forEach((params: Params) => {
-                            this.datastore.getWithType(params['type'],params['id']).then(doc=>{
-                                    this.doc = doc;
-                                    this.inLoop = false;
-                                },
-                                err=>console.error("err in View compon",err))
-                        });
-                    }
-                }
-            }
-        );
+        this.route.params.forEach((params: Params) => {
+            this.datastore.getById(params['id']).then(doc=>{
+                this.doc = doc;
+            },
+            err=>console.error("err in View component",err))
+        })
+
     }
 
 }

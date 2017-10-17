@@ -36,7 +36,7 @@
                 <li *ngFor="let document of documents; let index=index"
                     class="list-group-item">
 
-                    <a [routerLink]="['/resources/show/'+document.resource.type+'/'+document.resource.id]">
+                    <a [routerLink]="['/resources/show/'+document.resource.id]">
                         {{document.dataset}} -- {{document.resource.type}} - {{document.resource.identifier}} -
                         {{document.resource.shortDescription}}
                     </a>

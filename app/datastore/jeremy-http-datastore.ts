@@ -20,14 +20,14 @@ export class JeremyHttpDatastore implements ReadDatastore {
     get(resourceId: string): Promise<Document> {
         return undefined;
     }
-
-    getWithType(type:string, resourceId: string): Promise<Document> {
+    
+    getById(resourceId: string): Promise<Document> {
         return new Promise<any>((resolve,reject)=>{
             const querystring = '/data/resource/'+resourceId;
             this.http.get(querystring,{headers:this.authService.getHeaders()}
-            ).subscribe(response => {
-                resolve(JSON.parse(response['_body']))
-            },error=>reject(error));
+                ).subscribe(response => {
+                    resolve(JSON.parse(response['_body']))
+                },error=>reject(error));
         });
     }
 
