@@ -20,7 +20,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
     get(resourceId: string): Promise<Document> {
         return undefined;
     }
-    
+
     getById(resourceId: string): Promise<Document> {
         return new Promise<any>((resolve,reject)=>{
             const querystring = '/data/resource/'+resourceId;
