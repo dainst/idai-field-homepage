@@ -21,8 +21,8 @@ export class WelcomeComponent implements OnInit {
 
     ngOnInit() {
 
-        this.datastore.find({ q: '', type: '_' }).then(
-            documents => this.documents = documents,
+        this.datastore.find({ q: '', type: 'Project' }).then(
+            documents => {this.documents = documents; console.log(documents)},
             err => console.error(err)
         )
     }
@@ -30,6 +30,9 @@ export class WelcomeComponent implements OnInit {
     public showDocument(document: Document) {
 
         this.router.navigate(['resources/show/' + document.resource.type + '/' + document.resource.id]);
+
     }
+
+
 
 }
