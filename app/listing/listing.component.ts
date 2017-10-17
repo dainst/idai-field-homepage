@@ -16,13 +16,8 @@ export class ListingComponent {
 
     public projects = [
         { value: 'all', display: 'Alle' },
-        { value: 'pergamon', display: 'Pergamon' },
-        { value: 'pgerth', display: 'Philipp' },
-        { value: 'fzavodnik', display: 'Fabian' },
-        { value: 'jwieners', display: 'Jan' },
-        { value: 'scuy', display: 'Sebastian' },
-        { value: 'tkleinke', display: 'Thomas' },
-        { value: 'doliveira', display: 'Daniel' }
+        { value: 'monte-turcisi-project', display: 'Monte Turcisi' },
+        { value: 'meninx-project', display: 'Meninx' }
     ];
 
     public selectedProject = 'all';
