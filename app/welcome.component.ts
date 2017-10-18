@@ -29,8 +29,15 @@ export class WelcomeComponent implements OnInit {
 
     public showDocument(document: Document) {
 
-        this.router.navigate(['resources/show/' + document.resource.type + '/' + document.resource.id]);
+        this.router.navigate(['resources/']);
 
+        /*
+        let popup = L.popup()
+            .setLatLng(document.resource.geometry.coordinates[0], document.resource.geometry.coordinates[1])
+            .setContent('<p>TITLE<br />' + document.resource.type)
+            .openOn(this.map);
+        */
+        // alert(document.resource.geometry.coordinates[0]);
     }
 
 
