@@ -1,581 +1,69 @@
 {
-  "idaifield": {
-    "mappings": {
-      "resource": {
-        "properties": {
-          "@timestamp": {
-            "type": "date",
-            "format": "strict_date_optional_time||epoch_millis"
-          },
-          "@version": {
-            "type": "string"
-          },
-          "created": {
-            "properties": {
-              "date": {
-                "type": "date",
-                "format": "strict_date_optional_time||epoch_millis"
-              },
-              "user": {
-                "type": "string"
-              }
+  "mappings": {
+    "resource": {
+      "dynamic" : "true",
+      "properties": {
+        "dataset": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "resource": {
+          "properties": {
+            "geometry": {
+              "type": "geo_shape"
+            },
+            "hasFloorClassification": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasLayerClassification": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasMaterial": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasMetalMaterial": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasObjectTypeMetal": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasObjectTypeStone": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasOtherClassification": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasPotteryTypeSpecific": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasSoilType": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasVesselFormPottery": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasWallClassification": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "hasWallType": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "type": {
+              "type": "string",
+              "index": "not_analyzed"
             }
-          },
-          "dataset": {
-            "type": "keyword"
-          },
-          "doc_as_upsert": {
-            "type": "boolean"
-          },
-          "resource": {
-            "properties": {
-              "coordinateReferenceSystem": {
-                "type": "string"
-              },
-              "filename": {
-                "type": "string"
-              },
-              "geometry": {
-                "type": "geo_shape"
-              },
-              "georeference": {
-                "properties": {
-                  "bottomLeftCoordinates": {
-                    "type": "double"
-                  },
-                  "topLeftCoordinates": {
-                    "type": "double"
-                  },
-                  "topRightCoordinates": {
-                    "type": "double"
-                  }
-                }
-              },
-              "hasAmount": {
-                "type": "string"
-              },
-              "hasAmountSherdsBase": {
-                "type": "string"
-              },
-              "hasAmountShertsLid": {
-                "type": "string"
-              },
-              "hasArchitectureElement": {
-                "type": "string"
-              },
-              "hasArea": {
-                "type": "double"
-              },
-              "hasBeginningDate": {
-                "type": "string"
-              },
-              "hasBibliography": {
-                "type": "string"
-              },
-              "hasBlockTreatment": {
-                "type": "string"
-              },
-              "hasCampaign": {
-                "type": "string"
-              },
-              "hasClayColorBreakMunsell": {
-                "type": "string"
-              },
-              "hasClayColorInsideMunsell": {
-                "type": "string"
-              },
-              "hasClayColorOutsideMunsell": {
-                "type": "string"
-              },
-              "hasCoatInsideType": {
-                "type": "string"
-              },
-              "hasCoatOutsideType": {
-                "type": "string"
-              },
-              "hasColor": {
-                "type": "string"
-              },
-              "hasColorSoil": {
-                "type": "string"
-              },
-              "hasComparison": {
-                "type": "string"
-              },
-              "hasCondition": {
-                "type": "string"
-              },
-              "hasConditionAmount": {
-                "type": "string"
-              },
-              "hasConditionPercent": {
-                "type": "long"
-              },
-              "hasConsistency": {
-                "type": "string"
-              },
-              "hasConstruction": {
-                "type": "string"
-              },
-              "hasConstructionDetailsDescription": {
-                "type": "string"
-              },
-              "hasDairy": {
-                "type": "string"
-              },
-              "hasDate": {
-                "type": "string"
-              },
-              "hasDating": {
-                "properties": {
-                  "hasBegin": {
-                    "properties": {
-                      "year": {
-                        "type": "long"
-                      }
-                    }
-                  },
-                  "hasEnd": {
-                    "properties": {
-                      "year": {
-                        "type": "long"
-                      }
-                    }
-                  },
-                  "hasLabel": {
-                    "type": "string"
-                  },
-                  "isImprecise": {
-                    "type": "boolean"
-                  },
-                  "isUncertain": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "hasDecoration": {
-                "type": "boolean"
-              },
-              "hasDecorationDescription": {
-                "type": "string"
-              },
-              "hasDecorationPattern": {
-                "type": "boolean"
-              },
-              "hasDescription": {
-                "type": "string"
-              },
-              "hasDimensionDiameter": {
-                "properties": {
-                  "hasInputUnit": {
-                    "type": "string"
-                  },
-                  "hasInputValue": {
-                    "type": "double"
-                  },
-                  "hasLabel": {
-                    "type": "string"
-                  },
-                  "hasMeasurementComment": {
-                    "type": "string"
-                  },
-                  "hasMeasurementPosition": {
-                    "type": "string"
-                  },
-                  "hasValue": {
-                    "type": "long"
-                  },
-                  "isImprecise": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "hasDimensionHight": {
-                "properties": {
-                  "hasInputUnit": {
-                    "type": "string"
-                  },
-                  "hasInputValue": {
-                    "type": "long"
-                  },
-                  "hasLabel": {
-                    "type": "string"
-                  },
-                  "hasMeasurementComment": {
-                    "type": "string"
-                  },
-                  "hasMeasurementPosition": {
-                    "type": "string"
-                  },
-                  "hasValue": {
-                    "type": "long"
-                  },
-                  "isImprecise": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "hasDimensionLength": {
-                "properties": {
-                  "hasInputUnit": {
-                    "type": "string"
-                  },
-                  "hasInputValue": {
-                    "type": "long"
-                  },
-                  "hasLabel": {
-                    "type": "string"
-                  },
-                  "hasMeasurementComment": {
-                    "type": "string"
-                  },
-                  "hasMeasurementPosition": {
-                    "type": "string"
-                  },
-                  "hasValue": {
-                    "type": "long"
-                  },
-                  "isImprecise": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "hasDimensionPerimeter": {
-                "properties": {
-                  "hasInputUnit": {
-                    "type": "string"
-                  },
-                  "hasInputValue": {
-                    "type": "double"
-                  },
-                  "hasLabel": {
-                    "type": "string"
-                  },
-                  "hasMeasurementComment": {
-                    "type": "string"
-                  },
-                  "hasMeasurementPosition": {
-                    "type": "string"
-                  },
-                  "hasValue": {
-                    "type": "long"
-                  },
-                  "isImprecise": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "hasDimensionThickness": {
-                "properties": {
-                  "hasInputUnit": {
-                    "type": "string"
-                  },
-                  "hasInputValue": {
-                    "type": "double"
-                  },
-                  "hasLabel": {
-                    "type": "string"
-                  },
-                  "hasMeasurementComment": {
-                    "type": "string"
-                  },
-                  "hasMeasurementPosition": {
-                    "type": "string"
-                  },
-                  "hasValue": {
-                    "type": "long"
-                  },
-                  "isImprecise": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "hasDimensionVerticalExtent": {
-                "properties": {
-                  "editing": {
-                    "type": "boolean"
-                  },
-                  "hasInputUnit": {
-                    "type": "string"
-                  },
-                  "hasInputValue": {
-                    "type": "double"
-                  },
-                  "hasLabel": {
-                    "type": "string"
-                  },
-                  "hasMeasurementComment": {
-                    "type": "string"
-                  },
-                  "hasMeasurementPosition": {
-                    "type": "string"
-                  },
-                  "hasValue": {
-                    "type": "long"
-                  },
-                  "isImprecise": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "hasDimensionWidth": {
-                "properties": {
-                  "hasInputUnit": {
-                    "type": "string"
-                  },
-                  "hasInputValue": {
-                    "type": "long"
-                  },
-                  "hasLabel": {
-                    "type": "string"
-                  },
-                  "hasMeasurementComment": {
-                    "type": "string"
-                  },
-                  "hasMeasurementPosition": {
-                    "type": "string"
-                  },
-                  "hasValue": {
-                    "type": "long"
-                  },
-                  "isImprecise": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "hasDiscriptionOfBuildingTechnique": {
-                "type": "string"
-              },
-              "hasDistinguishingCriteria": {
-                "type": "string"
-              },
-              "hasDisturbance": {
-                "type": "boolean"
-              },
-              "hasDraughtsmen": {
-                "type": "string"
-              },
-              "hasDrawingTool": {
-                "type": "string"
-              },
-              "hasDrawingType": {
-                "type": "string"
-              },
-              "hasEndDate": {
-                "type": "string"
-              },
-              "hasExcavationType": {
-                "type": "string"
-              },
-              "hasFeatureForm": {
-                "type": "string"
-              },
-              "hasFilename": {
-                "type": "string"
-              },
-              "hasFloorClassification": {
-                "type": "string"
-              },
-              "hasFormDescription": {
-                "type": "string"
-              },
-              "hasFrontSideDescription": {
-                "type": "string"
-              },
-              "hasGazId": {
-                "type": "string"
-              },
-              "hasGrouting": {
-                "type": "boolean"
-              },
-              "hasJointsCondition": {
-                "type": "string"
-              },
-              "hasJointsDecoration": {
-                "type": "string"
-              },
-              "hasLayerClassification": {
-                "type": "string"
-              },
-              "hasLayerHight": {
-                "type": "long"
-              },
-              "hasLevel": {
-                "type": "double"
-              },
-              "hasMaterial": {
-                "type": "string"
-              },
-              "hasMaterialCharacteristic": {
-                "type": "string"
-              },
-              "hasMaterialForm": {
-                "type": "string"
-              },
-              "hasMetalMaterial": {
-                "type": "string"
-              },
-              "hasMortarBinder": {
-                "type": "string"
-              },
-              "hasMortarColor": {
-                "type": "string"
-              },
-              "hasMuralCrown": {
-                "type": "string"
-              },
-              "hasNatural": {
-                "type": "boolean"
-              },
-              "hasNumber": {
-                "type": "string"
-              },
-              "hasObjectTypeMetal": {
-                "type": "string"
-              },
-              "hasObjectTypeStone": {
-                "type": "string"
-              },
-              "hasOrientation": {
-                "type": "string"
-              },
-              "hasOtherClassification": {
-                "type": "string"
-              },
-              "hasPeriodBeginning": {
-                "type": "string"
-              },
-              "hasPeriodEnd": {
-                "type": "string"
-              },
-              "hasPictureObject": {
-                "type": "string"
-              },
-              "hasPlasterComponents": {
-                "type": "string"
-              },
-              "hasPotteryBreakStructure": {
-                "type": "string"
-              },
-              "hasPotteryTypeSpecific": {
-                "type": "string"
-              },
-              "hasPreservedDiameter": {
-                "type": "double"
-              },
-              "hasProcessor": {
-                "type": "string"
-              },
-              "hasProvinience": {
-                "type": "string"
-              },
-              "hasRestauration": {
-                "type": "boolean"
-              },
-              "hasReverseSideDescription": {
-                "type": "string"
-              },
-              "hasSoilType": {
-                "type": "string"
-              },
-              "hasSpatialLocation": {
-                "type": "string"
-              },
-              "hasSupervisor": {
-                "type": "string"
-              },
-              "hasTemper": {
-                "type": "string"
-              },
-              "hasTemperAmount": {
-                "type": "string"
-              },
-              "hasTemperParticles": {
-                "type": "string"
-              },
-              "hasTypeNumber": {
-                "type": "string"
-              },
-              "hasVesselFormPottery": {
-                "type": "string"
-              },
-              "hasWallClassification": {
-                "type": "string"
-              },
-              "hasWallType": {
-                "type": "string"
-              },
-              "height": {
-                "type": "long"
-              },
-              "id": {
-                "type": "string"
-              },
-              "identifier": {
-                "type": "string"
-              },
-              "isWallSide": {
-                "type": "string"
-              },
-              "relations": {
-                "properties": {
-                  "borders": {
-                    "type": "string"
-                  },
-                  "cuts": {
-                    "type": "string"
-                  },
-                  "depicts": {
-                    "type": "string"
-                  },
-                  "includes": {
-                    "type": "string"
-                  },
-                  "isAbove": {
-                    "type": "string"
-                  },
-                  "isAfter": {
-                    "type": "string"
-                  },
-                  "isBefore": {
-                    "type": "string"
-                  },
-                  "isBelow": {
-                    "type": "string"
-                  },
-                  "isContemporaryWith": {
-                    "type": "string"
-                  },
-                  "isCutBy": {
-                    "type": "string"
-                  },
-                  "isDepictedIn": {
-                    "type": "string"
-                  },
-                  "isRecordedIn": {
-                    "type": "string"
-                  },
-                  "liesWithin": {
-                    "type": "string"
-                  }
-                }
-              },
-              "shortDescription": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              },
-              "width": {
-                "type": "long"
-              }
-            }
-          },
-          "type": {
-            "type": "string"
-          },
-          "version": {
-            "type": "long"
           }
         }
       }
