@@ -9,9 +9,6 @@
         },
         "resource": {
           "properties": {
-            "geometry": {
-              "type": "geo_shape"
-            },
             "hasFloorClassification": {
               "type": "string",
               "index": "not_analyzed"
