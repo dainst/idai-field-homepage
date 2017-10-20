@@ -37,9 +37,9 @@ export class WelcomeComponent implements OnInit {
 
         // initialize map & mapping parameters
         this.map = L.map('projectMap', {
-            center: new L.LatLng(35, 15),
+            center: new L.LatLng(40, 15),
             zoomControl: false,
-            zoom: 4,
+            zoom: 5,
             layers: [this.baseMaps.CartoDB],
         });
 
@@ -65,10 +65,17 @@ export class WelcomeComponent implements OnInit {
         console.log(document)
         let marker = L.marker([document.resource.geometry.coordinates[0], document.resource.geometry.coordinates[1]])
             .addTo(this.map)
+            .bindPopup(
+                "<b>" + document.resource.identifier.replace("-project", "").replace("-", " ").toUpperCase() + "</b><br>" +
+                "Im Oktober 2015 wurde ein tunesisch-deutsches Feldforschungsprojekt in Meninx, der größten antiken Stadt auf Djerba, begonnen. <br>" +
+                "<a href='http://www.klass-archaeologie.uni-muenchen.de/forschung/projekte1/d-projekte-laufend/meninx/index.html'>" + "Projektbeschreibung" + "</a><br>" +
+                "<a href='https://gazetteer.dainst.org/place/" + document.resource.hasGazId + "'>" + "Gazetteer" + "</a><br>" +
+                "<a class='btn btn-sm btn-primary' style='color:white' href='#/resources/show/" + document.resource.id + "' target='_blank'><span class='glyphicon glyphicon-search' aria-hidden='true'></span>Show project data</a>"
+            );
     }
 
-    public showDocument(document: Document) {
-        this.router.navigate(['resources/show/' + document.resource.id]);
+    public showDocument(identifier: any) {
+        this.router.navigate(['resources/show/' + identifier]);
     }
 
 
