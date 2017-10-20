@@ -1,3 +1,5 @@
+var glup = require('gulp');
+var copyAssets = require('gulp-css-copy-assets');
 var gulp = require('gulp');
 var url = require('url');
 var sass = require('gulp-sass');
@@ -29,7 +31,16 @@ gulp.task('convert-sass', function () {
             ], precision: 8
         }))
         .pipe(concat('app.css'))
+        .pipe(replace('url(images/', 'url(../img/'))
         .pipe(gulp.dest('app'));
+});
+
+gulp.task('copy-img', function () {
+
+    return gulp.src([
+        'node_modules/leaflet/dist/images/*.png'
+    ])
+        .pipe(gulp.dest('img'));
 });
 
 function watch() {
@@ -56,7 +67,7 @@ gulp.task('webserver-watch', function () {
 
 
 const tscConfig = require('./tsconfig.json');
-gulp.task('compile', ['convert-sass'], function () {
+gulp.task('compile', ['convert-sass','copy-img'], function () {
     // fonts
     gulp.src([
         'node_modules/roboto-fontface/fonts/**/*',
