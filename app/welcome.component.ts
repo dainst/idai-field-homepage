@@ -37,9 +37,9 @@ export class WelcomeComponent implements OnInit {
 
         // initialize map & mapping parameters
         this.map = L.map('projectMap', {
-            center: new L.LatLng(40, 15),
+            center: new L.LatLng(35, 15),
             zoomControl: false,
-            zoom: 5,
+            zoom: 4,
             layers: [this.baseMaps.CartoDB],
         });
 
@@ -50,21 +50,25 @@ export class WelcomeComponent implements OnInit {
 
         // add project data
         this.datastore.find({ q: '', type: 'Project' }).then(
-            documents => {this.documents = documents; console.log(documents)},
+            documents => {
+                this.documents = documents;
+                console.log(documents);
+                for (let doc of documents) {
+                    this.generateMarker(doc);
+                }
+            },
             err => console.error(err)
         )
     }
 
+    public generateMarker(document: Document) {
+        console.log(document)
+        let marker = L.marker([document.resource.geometry.coordinates[0], document.resource.geometry.coordinates[1]])
+            .addTo(this.map)
+    }
+
     public showDocument(document: Document) {
         this.router.navigate(['resources/show/' + document.resource.id]);
-
-        /*
-        let popup = L.popup()
-            .setLatLng(document.resource.geometry.coordinates[0], document.resource.geometry.coordinates[1])
-            .setContent('<p>TITLE<br />' + document.resource.type)
-            .openOn(this.map);
-        */
-        // alert(document.resource.geometry.coordinates[0]);
     }
 
 
