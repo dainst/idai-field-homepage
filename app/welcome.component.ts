@@ -10,6 +10,7 @@ import {Document} from 'idai-components-2/core';
 /**
  * @author Daniel de Oliveira
  * @author Thomas Kleinke
+ * @author Philipp Gerth
  */
 export class WelcomeComponent implements OnInit {
 
@@ -46,7 +47,6 @@ export class WelcomeComponent implements OnInit {
         // adds map control: layertree, scale
         L.control.zoom({position: 'topleft'}).addTo(this.map);
         L.control.layers(this.baseMaps).addTo(this.map);
-        L.control.scale().addTo(this.map);
 
         // add project data
         this.datastore.find({ q: '', type: 'Project' }).then(
