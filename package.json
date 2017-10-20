@@ -53,7 +53,6 @@
     "chromedriver": "2.25.1",
     "gulp": "3.9.0",
     "gulp-concat": "2.6.0",
-    "gulp-css-copy-assets": "0.0.4",
     "gulp-replace": "0.5.4",
     "gulp-sass": "2.3.2",
     "gulp-typescript": "3.1.4",
