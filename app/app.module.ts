@@ -21,6 +21,7 @@ import CONFIG = require('config/config.json!json');
 import {ListingComponent} from './listing/listing.component';
 import {ViewComponent} from './listing/view-component';
 import {WrapperComponent} from './listing/wrapper-component';
+import {MapComponent} from './map/map-component';
 import {WelcomeComponent} from './welcome.component';
 import {NothingComponent} from './listing/nothing.component';
 import {AppConfigurator} from 'idai-components-2/idai-field-model';
@@ -45,6 +46,7 @@ import {AuthService} from './auth-service';
         ListingComponent, // TODO necessary here when shown in outlet?
         ViewComponent, // TODO ?
         WrapperComponent,
+        MapComponent,
         WelcomeComponent,
         NothingComponent,
         SignInComponent
