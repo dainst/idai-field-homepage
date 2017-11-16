@@ -16,9 +16,11 @@ export class MapComponent implements AfterViewInit {
 
     ngOnInit(): void {
 
+        let _main = this;
 
         // initialize map & mapping parameters
         this.map = L.map('map', {
+            zoom: 13,
             crs: L.CRS.Simple,
         });
 
@@ -37,14 +39,19 @@ export class MapComponent implements AfterViewInit {
             err => console.error(err)
         );
 
+        console.log(this.map.getZoom());
+        this.map.on('zoom',function () {
+            //console.log(this.getZoom());
+            if (this.getZoom() > 4) {
+                console.log(_main.getDetailData());
+            }
+        })
+
     }
 
-    public toGeoJSON(geom: any) {
-        let coords: number[] = [geom.coordinates[1], geom.coordinates[0]];
-        geom.coordinates = coords;
-        return geom;
+    private getDetailData () {
+        return "hm"
     }
-
 
 
 }
