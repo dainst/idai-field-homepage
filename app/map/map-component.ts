@@ -1,23 +1,33 @@
 import {Component, OnInit, AfterViewInit} from "@angular/core";
 import {ReadDatastore} from 'idai-components-2/datastore';
+import {JeremyHttpDatastore} from "../datastore/jeremy-http-datastore";
+import {ActivatedRoute, Params, Router, NavigationEnd} from "@angular/router";
 
 @Component({
     moduleId: module.id,
     templateUrl: './map.html'
 })
 
-export class MapComponent {
+/**
+ * @author Philipp Gerth
+ */
+
+export class MapComponent implements OnInit {
     // defenition of public parameters for map, ressources and facetted search parameters
     private documents: Array<Document>;
-    public map: L.Map;
-    public mains: L.GeoJSON;
-    public docs: L.GeoJSON;
+    private map: L.Map;
+    private mains: L.GeoJSON;
+    private docs: L.GeoJSON;
+    private project: string;
 
-    constructor(private datastore: ReadDatastore
-    ) {}
+    constructor(private route: ActivatedRoute,private router: Router, private datastore: JeremyHttpDatastore) { }
 
     ngOnInit(): void {
         let _main = this;
+
+        this.route.params.forEach((params: Params) => {
+            this.project = params['id'];
+        })
 
         // initialize map & mapping parameters
         this.map = L.map('map', {
@@ -39,7 +49,7 @@ export class MapComponent {
                 if (_main.map.hasLayer(_main.docs)) {
                     console.log("Removing detailed data.");
                     _main.docs.remove();
-                };
+                }
             }
         })
 
@@ -47,7 +57,7 @@ export class MapComponent {
 
     // Function that asks the datastore for detailed data.
     private getDetailData () {
-        this.datastore.find({ q: '', project: 'meninx-project'}).then(
+        this.datastore.find({ q: '', project: this.project}).then(
             documents => {
                 this.docs = L.geoJSON();
                 for (let doc of documents) {
@@ -61,7 +71,7 @@ export class MapComponent {
 
     // Function that calls the asks for main operations, like trenches.
     private getMainOps () {
-        this.datastore.find({ q: '', type: 'Trench' }).then(
+        this.datastore.find({ q: '', project: this.project, type: 'Trench' }).then(
             documents => {
                 this.mains = L.geoJSON().addTo(this.map);
                 for (let doc of documents) {

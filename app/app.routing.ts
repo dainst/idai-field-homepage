@@ -26,13 +26,12 @@ const routes: Routes = [
         }]
     },
     {
-        path: 'map',
+        path: 'map/:id',
         component: MapComponent,
-        children: [
-            {
-                path: '',
-                component: NothingComponent
-            }]
+        children: [{
+            path: '',
+            component: NothingComponent
+        }]
     },
     {
         path: 'sign_in',
