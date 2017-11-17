@@ -50,7 +50,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
                 q = q+" AND resource.type:"+query['type'];
             }
 
-            querystring = '/data/resource/?q='+q;
+            querystring = '/data/resource/?q='+q+" AND resource.geometry.type:Polygon &size=1000";
             console.log(querystring)
             this.http.get(querystring,{headers: this.authService.getHeaders()}
                 ).subscribe(response => {

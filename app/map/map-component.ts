@@ -6,51 +6,67 @@ import {ReadDatastore} from 'idai-components-2/datastore';
     templateUrl: './map.html'
 })
 
-export class MapComponent implements AfterViewInit {
+export class MapComponent {
     // defenition of public parameters for map, ressources and facetted search parameters
     private documents: Array<Document>;
     public map: L.Map;
+    public mains: L.GeoJSON;
+    public docs: L.GeoJSON;
 
     constructor(private datastore: ReadDatastore
     ) {}
 
     ngOnInit(): void {
-
         let _main = this;
 
         // initialize map & mapping parameters
         this.map = L.map('map', {
-            zoom: 13,
+            zoom: 5,
             crs: L.CRS.Simple,
         });
 
         // add project data
         this.datastore.find({ q: '', type: 'Trench' }).then(
             documents => {
-                this.documents = documents;
                 console.log(documents);
-                let mains = L.geoJSON().addTo(this.map);
+                this.mains = L.geoJSON().addTo(this.map);
                 for (let doc of documents) {
                     let geojson = doc.resource.geometry;
-                    mains.addData(geojson);
+                    this.mains.addData(geojson);
                 }
-                this.map.fitBounds(mains.getBounds());
+                this.map.fitBounds(this.mains.getBounds());
             },
             err => console.error(err)
         );
 
-        console.log(this.map.getZoom());
         this.map.on('zoom',function () {
-            //console.log(this.getZoom());
-            if (this.getZoom() > 4) {
-                console.log(_main.getDetailData());
+            console.log("Zoom level: " + this.getZoom())
+            if (this.getZoom() == 4) {
+                _main.getDetailData();
+                _main.mains.setStyle({ opacity: 0.2, fillOpacity: 0.1 });
+            }
+            if (this.getZoom() == 6) {
+                _main.docs.remove();
+                _main.mains.setStyle({ opacity: 0.5, fillOpacity: 0.2 });
             }
         })
 
     }
 
     private getDetailData () {
-        return "hm"
+        console.log("LOAD DETAIL DATA");
+        this.datastore.find({ q: '', project: 'meninx-project'}).then(
+            documents => {
+                //this.documents = documents;
+                console.log(documents);
+                this.docs = L.geoJSON().addTo(this.map);
+                for (let doc of documents) {
+                    let geojson = doc.resource.geometry;
+                    this.docs.addData(geojson);
+                }
+            },
+            err => console.error(err)
+        );
     }
 
 
