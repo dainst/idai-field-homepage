@@ -24,21 +24,10 @@ export class MapComponent {
             zoom: 5,
             crs: L.CRS.Simple,
         });
+        
+        this.getMainOps();
 
-        // add project data
-        this.datastore.find({ q: '', type: 'Trench' }).then(
-            documents => {
-                console.log(documents);
-                this.mains = L.geoJSON().addTo(this.map);
-                for (let doc of documents) {
-                    let geojson = doc.resource.geometry;
-                    this.mains.addData(geojson);
-                }
-                this.map.fitBounds(this.mains.getBounds());
-            },
-            err => console.error(err)
-        );
-
+        // Map event handling. Change layer on specific zoom level.
         this.map.on('zoom',function () {
             console.log("Zoom level: " + this.getZoom())
             if (this.getZoom() == 4) {
@@ -47,7 +36,7 @@ export class MapComponent {
             }
             if (this.getZoom() == 6) {
                 _main.docs.remove();
-                _main.mains.setStyle({ opacity: 0.5, fillOpacity: 0.2 });
+                _main.mains.resetStyle();
             }
         })
 
@@ -69,5 +58,20 @@ export class MapComponent {
         );
     }
 
+    // Function that calls the datastore for main operations, like trenches.
+    private getMainOps () {
+        this.datastore.find({ q: '', type: 'Trench' }).then(
+            documents => {
+                console.log(documents);
+                this.mains = L.geoJSON().addTo(this.map);
+                for (let doc of documents) {
+                    let geojson = doc.resource.geometry;
+                    this.mains.addData(geojson);
+                }
+                this.map.fitBounds(this.mains.getBounds());
+            },
+            err => console.error(err)
+        );
+    }
 
 }
