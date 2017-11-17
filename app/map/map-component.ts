@@ -35,9 +35,11 @@ export class MapComponent {
                 _main.docs.addTo(_main.map);
                 _main.mains.setStyle({ opacity: 0.2, fillOpacity: 0.1 });
             }
-            if (this.getZoom() == 6) {
-                _main.docs.remove();
-                _main.mains.resetStyle();
+            if (this.getZoom() == 2) {
+                if (_main.map.hasLayer(_main.docs)) {
+                    console.log("Removing detailed data.");
+                    _main.docs.remove();
+                };
             }
         })
 
@@ -45,11 +47,8 @@ export class MapComponent {
 
     // Function that asks the datastore for detailed data.
     private getDetailData () {
-        console.log("LOAD DETAIL DATA");
         this.datastore.find({ q: '', project: 'meninx-project'}).then(
             documents => {
-                //this.documents = documents;
-                console.log(documents);
                 this.docs = L.geoJSON();
                 for (let doc of documents) {
                     let geojson = doc.resource.geometry;
@@ -64,7 +63,6 @@ export class MapComponent {
     private getMainOps () {
         this.datastore.find({ q: '', type: 'Trench' }).then(
             documents => {
-                console.log(documents);
                 this.mains = L.geoJSON().addTo(this.map);
                 for (let doc of documents) {
                     let geojson = doc.resource.geometry;
