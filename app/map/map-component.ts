@@ -47,7 +47,6 @@ export class MapComponent implements OnInit {
             }
             if (this.getZoom() == 2) {
                 if (_main.map.hasLayer(_main.docs)) {
-                    console.log("Removing detailed data.");
                     _main.docs.remove();
                 }
             }
