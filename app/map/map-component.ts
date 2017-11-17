@@ -24,14 +24,15 @@ export class MapComponent {
             zoom: 5,
             crs: L.CRS.Simple,
         });
-        
+
         this.getMainOps();
+        this.getDetailData();
 
         // Map event handling. Change layer on specific zoom level.
         this.map.on('zoom',function () {
             console.log("Zoom level: " + this.getZoom())
             if (this.getZoom() == 4) {
-                _main.getDetailData();
+                _main.docs.addTo(_main.map);
                 _main.mains.setStyle({ opacity: 0.2, fillOpacity: 0.1 });
             }
             if (this.getZoom() == 6) {
@@ -42,13 +43,14 @@ export class MapComponent {
 
     }
 
+    // Function that asks the datastore for detailed data.
     private getDetailData () {
         console.log("LOAD DETAIL DATA");
         this.datastore.find({ q: '', project: 'meninx-project'}).then(
             documents => {
                 //this.documents = documents;
                 console.log(documents);
-                this.docs = L.geoJSON().addTo(this.map);
+                this.docs = L.geoJSON();
                 for (let doc of documents) {
                     let geojson = doc.resource.geometry;
                     this.docs.addData(geojson);
@@ -58,7 +60,7 @@ export class MapComponent {
         );
     }
 
-    // Function that calls the datastore for main operations, like trenches.
+    // Function that calls the asks for main operations, like trenches.
     private getMainOps () {
         this.datastore.find({ q: '', type: 'Trench' }).then(
             documents => {
