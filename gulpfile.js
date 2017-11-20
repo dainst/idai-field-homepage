@@ -1,5 +1,3 @@
-var glup = require('gulp');
-var copyAssets = require('gulp-css-copy-assets');
 var gulp = require('gulp');
 var url = require('url');
 var sass = require('gulp-sass');
