@@ -24,6 +24,7 @@ export class WelcomeComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        let welcomeComponent = this;
 
         this.baseMaps = {
             OpenStreetMap: L.tileLayer("http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
@@ -44,6 +45,10 @@ export class WelcomeComponent implements OnInit {
             zoom: 5,
             layers: [this.baseMaps.CartoDB],
         });
+
+        this.map.on('click',function(){
+            welcomeComponent.selectedDocument = null;
+        })
 
         // adds map control: layertree, scale
         L.control.zoom({position: 'topleft'}).addTo(this.map);

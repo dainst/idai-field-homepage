@@ -46,3 +46,9 @@ fonts
 app/**/*.js
 app/**/*.js.map
 
+img/layers-2x.png
+img/layers.png
+img/marker-icon-2x.png
+img/marker-icon.png
+img/marker-shadow.png
+package-lock.json
