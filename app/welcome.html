@@ -16,9 +16,12 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-9" id="projectMap"></div>
-        <div class="col-md-3" id="sidebar">
-            {{this.selectedDocument}}
+        <div [class.col-md-12]="!this.selectedDocument"
+             [class.col-md-9]="this.selectedDocument" id="projectMap"></div>
+        <div *ngIf="this.selectedDocument">
+            <div class="col-md-3" id="sidebar">
+                {{this.selectedDocument}}
+            </div>
         </div>
     </div>
 </div>
