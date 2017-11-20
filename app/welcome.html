@@ -1,7 +1,7 @@
 <div class="intro-header" style="min-height: 200px; background: url(../img/background.png) no-repeat center center; background-size: cover;">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12 text-center" style="padding: 60px;">
+            <div class="col-md-12 text-center" style="padding: 60px;">
                 <div style="height: 71px; display:inline-block; vertical-align: middle;" >
                     <img id="logo" width="60" src="img/logo.png">
                 </div>
@@ -14,4 +14,11 @@
     <!-- /.container -->
 </div>
 
-<div class="col-xs-9" id="projectMap"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9" id="projectMap"></div>
+        <div class="col-md-3" id="sidebar">
+            {{this.selectedDocument}}
+        </div>
+    </div>
+</div>

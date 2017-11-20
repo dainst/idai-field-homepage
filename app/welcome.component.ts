@@ -17,6 +17,7 @@ export class WelcomeComponent implements OnInit {
     private documents: Array<Document>;
     public map: L.Map;
     public baseMaps: any;
+    public selectedDocument: any;
 
     constructor(private datastore: ReadDatastore,
                 private router: Router
@@ -65,13 +66,24 @@ export class WelcomeComponent implements OnInit {
         console.log(document)
         let marker = L.marker([document.resource.geometry.coordinates[0], document.resource.geometry.coordinates[1]])
             .addTo(this.map)
-            .bindPopup(
+            .bindTooltip(document.resource.identifier, {
+                direction: 'top',
+                opacity: 1.0});
+
+         /*   .bindPopup(
                 "<b>" + document.resource.identifier.replace("-project", "").replace("-", " ").toUpperCase() + "</b><br>" +
                 "Im Oktober 2015 wurde ein tunesisch-deutsches Feldforschungsprojekt in Meninx, der größten antiken Stadt auf Djerba, begonnen. <br>" +
                 "<a href='http://www.klass-archaeologie.uni-muenchen.de/forschung/projekte1/d-projekte-laufend/meninx/index.html'>" + "Projektbeschreibung" + "</a><br>" +
                 "<a href='https://gazetteer.dainst.org/place/" + document.resource.hasGazId + "'>" + "Gazetteer" + "</a><br>" +
-                "<a class='btn btn-sm btn-primary' style='color:white' href='#/resources/show/" + document.resource.id + "' target='_blank'><span class='glyphicon glyphicon-search' aria-hidden='true'></span>Show project data</a>"
+                "<a class='btn btn-sm btn-primary' style='color:white' href='#/map/" + document.resource.id + "' target='_blank'><span class='glyphicon glyphicon-search' aria-hidden='true'></span>Show project data</a>"
             );
+        */
+
+        let welcomeComponent = this;
+        marker.on('click', function() {
+            console.log(document.resource.identifier);
+            welcomeComponent.selectedDocument = document.resource.identifier;
+        });
     }
 
     public showDocument(identifier: any) {

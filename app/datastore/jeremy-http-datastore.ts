@@ -49,8 +49,12 @@ export class JeremyHttpDatastore implements ReadDatastore {
             if (query['type'] !== undefined || query['type'] == "") {
                 q = q+" AND resource.type:"+query['type'];
             }
+            if (query['geometry'] !== undefined || query['type'] == "") {
+                q = q+" AND resource.geometry.type:"+query['geometry'];
+            }
 
-            querystring = '/data/resource/?q='+q+" AND resource.geometry.type:Polygon &size=1000";
+            // TODO: Removal of geometry restriction
+            querystring = '/data/resource/?q='+q+"&size=1000";
             console.log(querystring)
             this.http.get(querystring,{headers: this.authService.getHeaders()}
                 ).subscribe(response => {

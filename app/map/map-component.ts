@@ -43,11 +43,12 @@ export class MapComponent implements OnInit {
             console.log("Zoom level: " + this.getZoom())
             if (this.getZoom() == 4) {
                 _main.docs.addTo(_main.map);
-                _main.mains.setStyle({ opacity: 0.2, fillOpacity: 0.1 });
+                _main.mains.setStyle({ opacity: 1, fillOpacity: 0, dashArray: '10,10' });
             }
             if (this.getZoom() == 2) {
                 if (_main.map.hasLayer(_main.docs)) {
                     _main.docs.remove();
+                    _main.mains.setStyle({ opacity: 1, fillOpacity: 0.5, dashArray: '0'  });
                 }
             }
         })
@@ -56,7 +57,7 @@ export class MapComponent implements OnInit {
 
     // Function that asks the datastore for detailed data.
     private getDetailData () {
-        this.datastore.find({ q: '', project: this.project}).then(
+        this.datastore.find({ q: '', project: this.project, geometry: 'Polygon', type: 'Layer' }).then(
             documents => {
                 this.docs = L.geoJSON();
                 for (let doc of documents) {
