@@ -1,27 +1,14 @@
-<div class="intro-header" style="min-height: 200px; background: url(../img/background.png) no-repeat center center; background-size: cover;">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 text-center" style="padding: 60px;">
-                <div style="height: 71px; display:inline-block; vertical-align: middle;" >
-                    <img id="logo" width="60" src="img/logo.png">
-                </div>
-                <div style="display:inline-block;vertical-align: middle;">
-                    <h1 style="color: white; font-weight: 300; font-size: 65px;">iDAI.field</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-</div>
-
 <div class="container-fluid">
     <div class="row">
         <div [class.col-md-12]="!this.selectedDocument"
              [class.col-md-9]="this.selectedDocument" id="projectMap"></div>
-        <div *ngIf="this.selectedDocument">
-            <div class="col-md-3" id="sidebar">
-                {{this.selectedDocument}}
-            </div>
+        <div *ngIf="this.selectedDocument" class="col-md-3 container-fluid nopadding" id="sidebar">
+                <img class="img-responsive img-center" src="../img/background.png" style="height: 200px; display:inline-block; vertical-align: middle;">
+                <div class="jumbotron" style="color: white; background-color: #6A7DAA; padding: 32px; border-radius: 0px;">
+                    <h1>{{this.selectedDocument}}</h1>
+                    <p>Project</p>
+                </div>
+                <p style="padding-left: 32px;padding-right: 32px;">Im Oktober 2015 wurde ein tunesisch-deutsches Feldforschungsprojekt in Meninx, der größten antiken Stadt auf Djerba, begonnen.</p>
         </div>
     </div>
 </div>

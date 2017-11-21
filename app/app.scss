@@ -28,6 +28,13 @@ body {
   height: 35px;
 }
 
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.img-center {margin:0 auto;}
+
 .btn {
   text-transform: none !important;
   border-radius: 0 !important;
