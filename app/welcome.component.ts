@@ -87,7 +87,8 @@ export class WelcomeComponent implements OnInit {
         let welcomeComponent = this;
         marker.on('click', function() {
             console.log(document.resource.identifier);
-            welcomeComponent.selectedDocument = document.resource.identifier;
+            welcomeComponent.selectedDocument = document.resource;
+            welcomeComponent.selectedDocument.name = welcomeComponent.resolveProjectName(document.resource.identifier);
         });
     }
 
@@ -95,6 +96,15 @@ export class WelcomeComponent implements OnInit {
         this.router.navigate(['resources/show/' + identifier]);
     }
 
+    public resolveProjectName(identifier: any) {
+        let projName = identifier.replace("-project", "").replace("-", " ");
+        return this.toTitleCase(projName);
+    }
+
+    public toTitleCase(string: string)
+    {
+        return string.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    }
 
 
 }
