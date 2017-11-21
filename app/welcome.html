@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <div class="row">
         <div [class.col-md-12]="!this.selectedDocument"
-             [class.col-md-9]="this.selectedDocument" id="projectMap"></div>
+             [class.col-md-9]="this.selectedDocument" class="projectMap::after" id="projectMap">
+        </div>
         <div *ngIf="this.selectedDocument" class="col-md-3 container-fluid nopadding" id="sidebar">
                 <img class="img-responsive img-center" src="../img/background.png" style="height: 200px; display:inline-block; vertical-align: middle;">
                 <div class="jumbotron" style="color: white; background-color: #6A7DAA; padding: 32px; border-radius: 0px;">

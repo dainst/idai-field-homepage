@@ -9,3 +9,16 @@
   height: calc(100vh - 58px);
   margin-top: 0px;
 }
+
+#projectMap::after {
+  box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.2);
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 58px);
+  z-index: 800;
+  pointer-events: none;
+}
