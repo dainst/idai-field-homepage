@@ -4,12 +4,38 @@
              [class.col-md-9]="this.selectedDocument" class="projectMap::after" id="projectMap">
         </div>
         <div *ngIf="this.selectedDocument" class="col-md-3 container-fluid nopadding" id="sidebar">
-                <img class="img-responsive img-center" src="../img/background.png" style="height: 200px; display:inline-block; vertical-align: middle;">
-                <div class="jumbotron" style="color: white; background-color: #6A7DAA; padding: 32px; border-radius: 0px;">
-                    <h1>{{this.selectedDocument.name}}</h1>
-                    <p>Project</p>
-                </div>
-                <p style="padding-left: 32px;padding-right: 32px;">Im Oktober 2015 wurde ein tunesisch-deutsches Feldforschungsprojekt in Meninx, der größten antiken Stadt auf Djerba, begonnen.</p>
+            <img class="img-responsive img-center" src="../img/background.png" style="height: 200px; display:inline-block; vertical-align: middle;">
+            <div class="jumbotron" style="color: white; background-color: #6A7DAA; padding: 32px; border-radius: 0px;">
+                <h1>{{this.selectedDocument.name}}</h1>
+                <p>Project</p>
+            </div>
+            <p style="padding-left: 32px;padding-right: 32px;">Im Oktober 2015 wurde ein tunesisch-deutsches
+                Feldforschungsprojekt in Meninx, der größten antiken Stadt auf Djerba, begonnen.</p>
+            <hr>
+            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+                <div class="col-md3" style="min-width: 30px;"><i class="fa fa-group"></i></div>
+                <div class="col-md9">Prof. Dr. Stefan Ritter</div>
+            </div>
+            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+                <div class="col-md3" style="min-width: 30px;"><i class="fa fa-bank"></i></div>
+                <div class="col-md9">Institut für Klassische Archäologie, LMU München</div>
+            </div>
+            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+                <div class="col-md3" style="min-width: 30px;"><i class="fa fa-globe"></i></div>
+                <div class="col-md9"><a href="http://www.klass-archaeologie.uni-muenchen.de/forschung/projekte1/d-projekte-laufend/meninx/index.html">http://www.klass-archaeologie.uni-muenchen.de/forschung/projekte1/d-projekte-laufend/meninx/index.html</a></div>
+            </div>
+            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+                <div class="col-md3" style="min-width: 30px;"><i class="fa fa-address-card"></i></div>
+                <div class="col-md9">Paul Scheding</div>
+            </div>
+            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+                <div class="col-md3" style="min-width: 30px;"><i class="fa fa-envelope"></i></div>
+                <div class="col-md9">paul.scheding@lmu.de</div>
+            </div>
+            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+                <div class="col-md3" style="min-width: 30px;"><i class="fa fa-map-marker"></i></div>
+                <div class="col-md9"><a href="https://gazetteer.dainst.org/place/{{this.selectedDocument.hasGazId}}">iDAI.gazetteer: {{this.selectedDocument.hasGazId}}</a></div>
+            </div>
         </div>
     </div>
 </div>
