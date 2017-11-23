@@ -188,7 +188,7 @@ a:hover {
 
 .sidebar {
   height:100%;
-  text-align: center;
+  text-align: left;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -196,13 +196,49 @@ a:hover {
   overflow-y: scroll;
 }
 
+.sidebar .jumbotron {
+  color: white; background-color: #6A7DAA; padding: 16px; border-radius: 0px;
+}
+
+.sidebar-image {
+  width: 100%;
+  display:inline-block;
+  vertical-align: middle;
+  overflow-x:hidden
+}
+
+.sidebar-padding {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0px;
+}
+
+.sidebar-button {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+.sidebar-button-label {
+  color: #6A7DAA;
+  font-size: 10px;
+}
+
+.sidebar-description {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 .sidebar-metadata {
   padding-left: 16px;
   padding-right: 16px;
   margin: 0px;
-  text-align: left;
 }
 
-.sidebar-metadata .col-md3 {
+.sidebar-metadata-icon {
   min-width: 15%;
+}
+
+.sidebar-metadata-label {
+  width: 80% !important;
 }
