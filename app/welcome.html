@@ -9,12 +9,25 @@
                 <h1>{{this.selectedDocument.name}}</h1>
                 <p>Project</p>
             </div>
-            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+            <div class="row" style="padding-left: 32px; padding-right: 16px; margin-left: 0px;">
                 <div class="col-md4" style="width: 33%;">
-                    <a href="http://localhost:8085/#/map/meninx-project"> <i class="fa fa-database fa-4x"></i></a>
+                    <a style="text-align: center" href="http://localhost:8085/#/map/meninx-project">
+                        <i style="display: inline-block; width: 100%;" class="fa fa-database fa-2x"></i>
+                        <div style="color: #6A7DAA; font-size: 8px;">ZUM PROJEKT</div>
+                    </a>
                 </div>
-                <div class="col-md4" style="width: 33%;"><a href="http://www.klass-archaeologie.uni-muenchen.de/forschung/projekte1/d-projekte-laufend/meninx/index.html" target="_blank"><i class="fa fa-globe fa-4x"></i></a></div>
-                <div class="col-md4" style="width: 33%;"><a href="https://gazetteer.dainst.org/place/{{this.selectedDocument.hasGazId}}"><i class="fa fa-map-marker fa-4x"></i></a></div>
+                <div class="col-md4" style="width: 33%;">
+                    <a style="text-align: center" href="http://www.klass-archaeologie.uni-muenchen.de/forschung/projekte1/d-projekte-laufend/meninx/index.html" target="_blank">
+                        <i style="display: inline-block; width: 100%;" class="fa fa-globe fa-2x"></i>
+                        <div style="color: #6A7DAA; font-size: 8px;">HOMEPAGE</div>
+                    </a>
+                </div>
+                <div class="col-md4" style="width: 33%;">
+                    <a style="text-align: center" href="https://gazetteer.dainst.org/place/{{this.selectedDocument.hasGazId}}">
+                        <i style="display: inline-block; width: 100%;" class="fa fa-map-marker fa-2x"></i>
+                        <div style="color: #6A7DAA; font-size: 8px;">GAZETTEER</div>
+                    </a>
+                </div>
             </div>
             <hr>
             <p style="padding-left: 32px;padding-right: 32px;">Im Oktober 2015 wurde ein tunesisch-deutsches
