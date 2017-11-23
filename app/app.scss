@@ -195,3 +195,14 @@ a:hover {
   right: 0;
   overflow-y: scroll;
 }
+
+.sidebar-metadata {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0px;
+  text-align: left;
+}
+
+.sidebar-metadata .col-md3 {
+  min-width: 15%;
+}
