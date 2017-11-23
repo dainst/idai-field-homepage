@@ -3,13 +3,13 @@
         <div [class.col-md-12]="!this.selectedDocument"
              [class.col-md-9]="this.selectedDocument" class="projectMap::after" id="projectMap">
         </div>
-        <div *ngIf="this.selectedDocument" class="col-md-3 container-fluid nopadding" id="sidebar">
-            <img class="img-responsive img-center" src="../img/background.png" style="height: 200px; display:inline-block; vertical-align: middle;">
-            <div class="jumbotron" style="color: white; background-color: #6A7DAA; padding: 32px; border-radius: 0px;">
+        <div *ngIf="this.selectedDocument" class="col-md-3 container-fluid nopadding" style="width:100%; padding-right: 0px;" id="sidebar">
+            <div style="width: 100%; display:inline-block; vertical-align: middle; overflow:hidden"><img style="height: 200px;" class="img-responsive img-center" src="../img/background.png"></div>
+            <div class="jumbotron" style="color: white; background-color: #6A7DAA; padding: 16px; border-radius: 0px;">
                 <h1>{{this.selectedDocument.name}}</h1>
-                <p>Project</p>
+                Projekt
             </div>
-            <div class="row" style="padding-left: 32px; padding-right: 16px; margin-left: 0px;">
+            <div class="row" style="padding-left: 16px; padding-right: 16px; margin: 0px;">
                 <div class="col-md4" style="width: 33%;">
                     <a style="text-align: center" href="http://localhost:8085/#/map/meninx-project">
                         <i style="display: inline-block; width: 100%;" class="fa fa-database fa-2x"></i>
@@ -30,31 +30,27 @@
                 </div>
             </div>
             <hr>
-            <p style="padding-left: 32px;padding-right: 32px;">Im Oktober 2015 wurde ein tunesisch-deutsches
+            <p style="padding-left: 16px;padding-right: 16px;">Im Oktober 2015 wurde ein tunesisch-deutsches
                 Feldforschungsprojekt in Meninx, der größten antiken Stadt auf Djerba, begonnen.</p>
             <hr>
-            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+            <div class="row" style="padding-left: 16px; padding-right: 16px; margin: 0px;">
                 <div class="col-md3" style="min-width: 10%;"><i class="fa fa-group"></i></div>
-                <div class="col-md9" style="width: 90% !important;">Prof. Dr. Stefan Ritter</div>
+                <div class="col-md9" style="width: 80% !important;">Prof. Dr. Stefan Ritter</div>
             </div>
-            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+            <div class="row" style="padding-left: 16px; padding-right: 16px; margin: 0px;">
                 <div class="col-md3" style="min-width: 10%;"><i class="fa fa-bank"></i></div>
-                <div class="col-md9" style="width: 90% !important;">Institut für Klassische Archäologie, LMU München</div>
+                <div class="col-md9" style="width: 80% !important;">Institut für Klassische Archäologie, LMU München</div>
                 <div class="clearfix"></div>
             </div>
-            <div class="row" style="padding-left: 32px; margin-left: 0px;">
-                <div class="col-md3" style="min-width: 10%;"><i class="fa fa-globe"></i></div>
-                <div class="col-md9" style="width: 90% !important;"><a href="http://www.klass-archaeologie.uni-muenchen.de/forschung/projekte1/d-projekte-laufend/meninx/index.html">http://www.klass-archaeologie.uni-muenchen.de/forschung/projekte1/d-projekte-laufend/meninx/index.html</a></div>
-            </div>
-            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+            <div class="row" style="padding-left: 16px; padding-right: 16px; margin: 0px;">
                 <div class="col-md3" style="min-width: 10%;"><i class="fa fa-address-card"></i></div>
                 <div class="col-md9" style="width: 90% !important;">Paul Scheding</div>
             </div>
-            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+            <div class="row" style="padding-left: 16px; padding-right: 16px; margin: 0px;">
                 <div class="col-md3" style="min-width: 10%;"><i class="fa fa-envelope"></i></div>
                 <div class="col-md9" style="width: 90% !important;">paul.scheding@lmu.de</div>
             </div>
-            <div class="row" style="padding-left: 32px; margin-left: 0px;">
+            <div class="row" style="padding-left: 16px; padding-right: 16px; margin: 0px;">
                 <div class="col-md3" style="min-width: 10%;"><i class="fa fa-map-marker"></i></div>
                 <div class="col-md9" style="width: 90% !important;"><a href="https://gazetteer.dainst.org/place/{{this.selectedDocument.hasGazId}}">iDAI.gazetteer: {{this.selectedDocument.hasGazId}}</a></div>
             </div>
