@@ -57,16 +57,17 @@ export class WelcomeComponent implements OnInit {
     }
 
 
-    private addProjectData() {
+    private async addProjectData() {
 
-        this.datastore.find({ q: '', type: 'Project' }).then(
-            documents => {
-                for (let doc of documents) {
-                    this.generateMarker(doc);
-                }
-            },
-            err => console.error(err)
-        )
+        try {
+            const documents = await this.datastore.find({q: '', type: 'Project'});
+
+            for (let doc of documents) {
+                this.generateMarker(doc);
+            }
+        } catch (err) {
+            console.error(err)
+        }
     }
 
 
