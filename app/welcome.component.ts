@@ -53,36 +53,45 @@ export class WelcomeComponent implements OnInit {
         L.control.zoom({position: 'topleft'}).addTo(this.map);
         L.control.layers(WelcomeComponent.baseMaps).addTo(this.map);
 
-        this.addProjectData();
+        this.addProjects();
     }
 
 
-    private async addProjectData() {
+    private async addProjects() {
 
         try {
             const documents = await this.datastore.find({q: '', type: 'Project'});
+            this.addMarkersToMap(documents);
 
-            for (let doc of documents) {
-                this.generateMarker(doc);
-            }
         } catch (err) {
             console.error(err)
         }
     }
 
 
-    private generateMarker(document: Document) {
+    private addMarkersToMap(documents: Document[]) {
 
-        const marker = L.marker([document.resource.geometry.coordinates[0], document.resource.geometry.coordinates[1]])
-            .addTo(this.map)
+        for (let doc of documents) {
+            const marker = WelcomeComponent.generateMarker(doc);
+            marker.addTo(this.map);
+            marker.on('click', () => this.selectDocumentOnSidebar(doc));
+        }
+    }
+
+
+    private selectDocumentOnSidebar(doc: Document) {
+
+        this.selectedDocument = doc.resource;
+        this.selectedDocument.name = WelcomeComponent.resolveProjectName(doc.resource.identifier);
+    }
+
+
+    private static generateMarker(document: Document) {
+
+        return L.marker([document.resource.geometry.coordinates[0], document.resource.geometry.coordinates[1]])
             .bindTooltip(document.resource.identifier, {
                 direction: 'top',
                 opacity: 1.0});
-
-        marker.on('click', () => {
-            this.selectedDocument = document.resource;
-            this.selectedDocument.name = WelcomeComponent.resolveProjectName(document.resource.identifier);
-        });
     }
 
 

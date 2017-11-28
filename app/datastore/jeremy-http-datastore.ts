@@ -57,7 +57,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
                 q = q+" AND resource.geometry.type:"+query['geometry'];
             }
 
-            // TODO: Removal of geometry restriction
+            // TODO: Removal of geometry restriction after implementation of Exists ES Query in Jeremy #7116
             querystring = '/data/resource/?q='+q+"&size=1000";
             this.http.get(querystring,{headers: this.authService.getHeaders()}
                 ).subscribe(response => {
