@@ -17,11 +17,15 @@ export class JeremyHttpDatastore implements ReadDatastore {
         private authService: AuthService
     ) { }
 
+
     get(resourceId: string): Promise<Document> {
+
         return undefined;
     }
 
+
     getById(resourceId: string): Promise<Document> {
+
         return new Promise<any>((resolve,reject)=>{
             const querystring = '/data/resource/'+resourceId;
             this.http.get(querystring,{headers:this.authService.getHeaders()}
@@ -55,7 +59,6 @@ export class JeremyHttpDatastore implements ReadDatastore {
 
             // TODO: Removal of geometry restriction
             querystring = '/data/resource/?q='+q+"&size=1000";
-            console.log(querystring)
             this.http.get(querystring,{headers: this.authService.getHeaders()}
                 ).subscribe(response => {
                 let objects = JSON.parse(response['_body']).results;
@@ -66,11 +69,15 @@ export class JeremyHttpDatastore implements ReadDatastore {
         });
     }
 
+
     all(type?: string, offset?: number, limit?: number): Promise<Document[]> {
+
         return undefined;
     }
 
+
     refresh(doc: Document): Promise<Document> {
+
         return undefined;
     }
 
