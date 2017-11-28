@@ -30,26 +30,28 @@
                 </div>
             </div>
             <hr>
-            <p class="sidebar-padding">{{this.selectedDocument.shortDescription}}</p>
-            <hr>
-            <div class="row sidebar-padding">
+            <div *ngIf="this.selectedDocument.shortDescription">
+                <p class="sidebar-padding">{{this.selectedDocument.shortDescription}}</p>
+                <hr>
+            </div>
+            <div *ngIf="this.selectedDocument.hasSupervisor" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-group"></i></div>
                 <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasSupervisor}}</div>
             </div>
-            <div class="row sidebar-padding">
+            <div *ngIf="this.selectedDocument.hasContactPerson" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-address-card"></i></div>
                 <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasContactPerson}}</div>
             </div>
-            <div class="row sidebar-padding">
+            <div *ngIf="this.selectedDocument.hasContactMail" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-envelope"></i></div>
                 <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasContactMail}}</div>
             </div>
-            <div class="row sidebar-padding">
+            <div *ngIf="this.selectedDocument.hasInsitution" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-bank"></i></div>
                 <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasInsitution}}</div>
                 <div class="clearfix"></div>
             </div>
-            <div class="row sidebar-padding">
+            <div *ngIf="this.selectedDocument.hasGazId" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-map-marker"></i></div>
                 <div class="col-md9 sidebar-metadata-label"><a href="https://gazetteer.dainst.org/place/{{this.selectedDocument.hasGazId}}">{{this.selectedDocument.hasGazId}}</a></div>
             </div>
