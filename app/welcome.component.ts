@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ReadDatastore} from 'idai-components-2/datastore';
 import {Document} from 'idai-components-2/core';
+import {TitleGenerator} from "./title-generator";
 
 @Component({
     moduleId: module.id,
@@ -31,8 +32,7 @@ export class WelcomeComponent implements OnInit {
     };
 
 
-    constructor(private datastore: ReadDatastore,
-                private router: Router) {
+    constructor(private datastore: ReadDatastore) {
     }
 
 
@@ -82,7 +82,7 @@ export class WelcomeComponent implements OnInit {
     private selectDocumentOnSidebar(doc: Document) {
 
         this.selectedDocument = doc.resource;
-        this.selectedDocument.name = WelcomeComponent.resolveProjectName(doc.resource.identifier);
+        this.selectedDocument.name = TitleGenerator.resolveProjectName(doc.resource.identifier);
     }
 
 
@@ -92,18 +92,5 @@ export class WelcomeComponent implements OnInit {
             .bindTooltip(document.resource.identifier, {
                 direction: 'top',
                 opacity: 1.0});
-    }
-
-
-    private static resolveProjectName(identifier: any) {
-
-        const projectName = identifier.replace("-project", "").replace("-", " ");
-        return WelcomeComponent.convertToTitle(projectName);
-    }
-
-
-    private static convertToTitle(string: string) {
-
-        return string.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 }
