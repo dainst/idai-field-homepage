@@ -30,29 +30,28 @@
                 </div>
             </div>
             <hr>
-            <p class="sidebar-padding">Im Oktober 2015 wurde ein tunesisch-deutsches
-                Feldforschungsprojekt in Meninx, der größten antiken Stadt auf Djerba, begonnen.</p>
+            <p class="sidebar-padding">{{this.selectedDocument.shortDescription}}</p>
             <hr>
             <div class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-group"></i></div>
-                <div class="col-md9 sidebar-metadata-label">Prof. Dr. Stefan Ritter</div>
-            </div>
-            <div class="row sidebar-padding">
-                <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-bank"></i></div>
-                <div class="col-md9 sidebar-metadata-label">Institut für Klassische Archäologie, LMU München</div>
-                <div class="clearfix"></div>
+                <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasSupervisor}}</div>
             </div>
             <div class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-address-card"></i></div>
-                <div class="col-md9 sidebar-metadata-label">Paul Scheding</div>
+                <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasContactPerson}}</div>
             </div>
             <div class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-envelope"></i></div>
-                <div class="col-md9 sidebar-metadata-label">paul.scheding@lmu.de</div>
+                <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasContactMail}}</div>
+            </div>
+            <div class="row sidebar-padding">
+                <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-bank"></i></div>
+                <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasInsitution}}</div>
+                <div class="clearfix"></div>
             </div>
             <div class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-map-marker"></i></div>
-                <div class="col-md9 sidebar-metadata-label"><a href="https://gazetteer.dainst.org/place/{{this.selectedDocument.hasGazId}}">Meninx, Tunesien</a></div>
+                <div class="col-md9 sidebar-metadata-label"><a href="https://gazetteer.dainst.org/place/{{this.selectedDocument.hasGazId}}">{{this.selectedDocument.hasGazId}}</a></div>
             </div>
         </div>
     </div>
