@@ -1,7 +1,6 @@
-import {Component, OnInit, AfterViewInit} from "@angular/core";
-import {ReadDatastore} from 'idai-components-2/datastore';
+import {Component, OnInit} from "@angular/core";
 import {JeremyHttpDatastore} from "../datastore/jeremy-http-datastore";
-import {ActivatedRoute, Params, Router, NavigationEnd} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -14,6 +13,7 @@ import {ActivatedRoute, Params, Router, NavigationEnd} from "@angular/router";
 
 export class MapComponent implements OnInit {
     // defenition of public parameters for map, ressources and facetted search parameters
+    // TODO: Remove documents?
     private documents: Array<Document>;
     private map: L.Map;
     private mains: L.GeoJSON;
@@ -21,7 +21,7 @@ export class MapComponent implements OnInit {
     private project: string;
 
 
-    constructor(private route: ActivatedRoute,private router: Router, private datastore: JeremyHttpDatastore) { }
+    constructor(private route: ActivatedRoute, private datastore: JeremyHttpDatastore) { }
 
 
     ngOnInit(): void {
@@ -39,6 +39,7 @@ export class MapComponent implements OnInit {
         this.getDetailData();
 
         // Map event handling. Change layer on specific zoom level.
+        // TODO: defineMapHandler
         this.map.on('zoom',() => {
             console.log("Zoom level: " + this.map.getZoom())
             if (this.map.getZoom() == 4) {
@@ -56,6 +57,7 @@ export class MapComponent implements OnInit {
     }
 
 
+    // TODO: Function async awaits
     private getDetailData () {
 
         this.datastore.find({ q: '', project: this.project, geometry: 'Polygon', type: 'Layer' } as any).then(
@@ -72,6 +74,7 @@ export class MapComponent implements OnInit {
 
 
     // Function that calls the asks for main operations, like trenches.
+    // TODO: Function async awaits
     private getMainOps () {
 
         this.datastore.find({ q: '', project: this.project, type: 'Trench' } as any).then(
