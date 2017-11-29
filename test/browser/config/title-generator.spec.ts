@@ -8,7 +8,7 @@ export function main() {
 
         it('should do stuff', ()=> {
 
-            expect(TitleGenerator.resolveProjectName('monte-turcisi-project')).toEqual('Monte Turcisi!');
+            expect(TitleGenerator.resolveProjectName('monte-turcisi-project')).toEqual('Monte Turcisi');
         });
     })
 }
