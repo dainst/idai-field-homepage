@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="row welcome">
-        <div [class.col-md-12]="!this.selectedDocument"
-             [class.col-md-9]="this.selectedDocument" class="projectMap::after" id="projectMap">
+        <div [class.col-md-12]="!selectedDocument"
+             [class.col-md-9]="selectedDocument" class="projectMap::after" id="projectMap">
         </div>
-        <div *ngIf="this.selectedDocument" class="col-md-3 container-fluid nopadding sidebar" id="sidebar">
+        <div *ngIf="selectedDocument" class="col-md-3 container-fluid nopadding sidebar" id="sidebar">
             <div class="sidebar-image"><img class="img-responsive img-center" style="height: 150px;"  src="../img/background.png"></div>
             <div class="jumbotron">
-                <h1>{{this.selectedDocument.name}}</h1>
+                <h1>{{selectedDocument.name}}</h1>
                 Projekt
             </div>
             <div class="row sidebar-padding">
@@ -23,37 +23,37 @@
                     </a>
                 </div>
                 <div class="col-md4" style="width: 33%;">
-                    <a class="sidebar-button" href="https://gazetteer.dainst.org/place/{{this.selectedDocument.hasGazId}}">
+                    <a class="sidebar-button" href="https://gazetteer.dainst.org/place/{{selectedDocument.hasGazId}}">
                         <i class="fa fa-map-marker fa-2x"></i>
                         <div class="sidebar-button-label"><b>GAZETTEER</b></div>
                     </a>
                 </div>
             </div>
             <hr>
-            <div *ngIf="this.selectedDocument.shortDescription">
-                <p class="sidebar-padding">{{this.selectedDocument.shortDescription}}</p>
+            <div *ngIf="selectedDocument.shortDescription">
+                <p class="sidebar-padding">{{selectedDocument.shortDescription}}</p>
                 <hr>
             </div>
-            <div *ngIf="this.selectedDocument.hasSupervisor" class="row sidebar-padding">
+            <div *ngIf="selectedDocument.hasSupervisor" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-group"></i></div>
-                <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasSupervisor}}</div>
+                <div class="col-md9 sidebar-metadata-label">{{selectedDocument.hasSupervisor}}</div>
             </div>
-            <div *ngIf="this.selectedDocument.hasContactPerson" class="row sidebar-padding">
+            <div *ngIf="selectedDocument.hasContactPerson" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-address-card"></i></div>
-                <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasContactPerson}}</div>
+                <div class="col-md9 sidebar-metadata-label">{{selectedDocument.hasContactPerson}}</div>
             </div>
-            <div *ngIf="this.selectedDocument.hasContactMail" class="row sidebar-padding">
+            <div *ngIf="selectedDocument.hasContactMail" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-envelope"></i></div>
-                <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasContactMail}}</div>
+                <div class="col-md9 sidebar-metadata-label">{{selectedDocument.hasContactMail}}</div>
             </div>
-            <div *ngIf="this.selectedDocument.hasInsitution" class="row sidebar-padding">
+            <div *ngIf="selectedDocument.hasInsitution" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-bank"></i></div>
-                <div class="col-md9 sidebar-metadata-label">{{this.selectedDocument.hasInsitution}}</div>
+                <div class="col-md9 sidebar-metadata-label">{{selectedDocument.hasInsitution}}</div>
                 <div class="clearfix"></div>
             </div>
-            <div *ngIf="this.selectedDocument.hasGazId" class="row sidebar-padding">
+            <div *ngIf="selectedDocument.hasGazId" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-map-marker"></i></div>
-                <div class="col-md9 sidebar-metadata-label"><a href="https://gazetteer.dainst.org/place/{{this.selectedDocument.hasGazId}}">{{this.selectedDocument.hasGazId}}</a></div>
+                <div class="col-md9 sidebar-metadata-label"><a href="https://gazetteer.dainst.org/place/{{selectedDocument.hasGazId}}">{{selectedDocument.hasGazId}}</a></div>
             </div>
         </div>
     </div>
