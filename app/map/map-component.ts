@@ -56,34 +56,35 @@ export class MapComponent implements OnInit {
     }
 
 
-    private getDetailData () {
+    private async getDetailData () {
 
-        this.datastore.find({ q: '', project: this.project, geometry: 'Polygon', type: 'Layer' } as any).then(
-            documents => {
-                this.docs = L.geoJSON();
-                for (let doc of documents) {
-                    let geojson = doc.resource.geometry;
-                    this.docs.addData(geojson);
-                }
-            },
-            err => console.error(err)
-        );
+        try {
+            const documents = await this.datastore.find({ q: '', project: this.project, geometry: 'Polygon', type: 'Layer' } as any)
+            this.docs = L.geoJSON();
+            for (let doc of documents) {
+                let geojson = doc.resource.geometry;
+                this.docs.addData(geojson);
+            }
+        } catch (err) {
+            console.error(err)
+        }
     }
 
 
-    // Function that calls the asks for main operations, like trenches.
-    private getMainOps () {
+    // Function that calls for main operations, like trenches.
+    private async getMainOps () {
 
-        this.datastore.find({ q: '', project: this.project, type: 'Trench' } as any).then(
-            documents => {
-                this.mains = L.geoJSON().addTo(this.map);
-                for (let doc of documents) {
-                    let geojson = doc.resource.geometry;
-                    this.mains.addData(geojson);
-                }
-                this.map.fitBounds(this.mains.getBounds());
-            },
+        try {
+            const documents = await this.datastore.find({q: '', project: this.project, type: 'Trench'} as any)
+
+            this.mains = L.geoJSON().addTo(this.map);
+            for (let doc of documents) {
+                let geojson = doc.resource.geometry;
+                this.mains.addData(geojson);
+            }
+            this.map.fitBounds(this.mains.getBounds());
+        } catch (err) {
             err => console.error(err)
-        );
+        }
     }
 }
