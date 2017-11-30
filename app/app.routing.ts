@@ -3,7 +3,7 @@ import {ListingComponent} from "./listing/listing.component";
 import {ViewComponent} from "./listing/view-component";
 import {WrapperComponent} from "./listing/wrapper-component";
 import {MapComponent} from "./map/map-component";
-import {WelcomeComponent} from "./welcome.component";
+import {WelcomeComponent} from "./welcome/welcome.component";
 import {NothingComponent} from "./listing/nothing.component";
 import {SignInComponent} from "./sign-in-component";
 

@@ -1,6 +1,6 @@
 /**
  */
-import {TitleGenerator} from "../../../app/title-generator";
+import {TitleGenerator} from "../../../app/welcome/title-generator";
 
 export function main() {
 
