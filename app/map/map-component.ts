@@ -1,7 +1,6 @@
-import {Component, OnInit, AfterViewInit} from "@angular/core";
-import {ReadDatastore} from 'idai-components-2/datastore';
+import {Component, OnInit} from "@angular/core";
 import {JeremyHttpDatastore} from "../datastore/jeremy-http-datastore";
-import {ActivatedRoute, Params, Router, NavigationEnd} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -13,7 +12,6 @@ import {ActivatedRoute, Params, Router, NavigationEnd} from "@angular/router";
  */
 
 export class MapComponent implements OnInit {
-    // defenition of public parameters for map, ressources and facetted search parameters
     private documents: Array<Document>;
     private map: L.Map;
     private mains: L.GeoJSON;
@@ -35,12 +33,51 @@ export class MapComponent implements OnInit {
             crs: L.CRS.Simple,
         });
 
-        this.getMainOps();
+        this.mains = L.geoJSON().addTo(this.map);
+        this.docs = L.geoJSON();
+
+        this.getMainOperations();
         this.getDetailData();
+        this.defineMapBehavior();
+    }
+
+
+    private async getDetailData () {
+
+        try {
+            const documents = await this.datastore.find({ q: '', project: this.project, geometry: 'Polygon', type: 'Layer' } as any);
+            this.createGeoJsonObjects(documents, this.docs);
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+
+    private async getMainOperations () {
+
+        try {
+            const documents = await this.datastore.find({q: '', project: this.project, type: 'Trench'} as any);
+            this.createGeoJsonObjects(documents, this.mains);
+            this.map.fitBounds(this.mains.getBounds());
+        } catch (err) {
+            err => console.error(err)
+        }
+    }
+
+
+    private createGeoJsonObjects (docs: Document[], object: any) {
+
+        for (let doc of docs) {
+            let geojson = doc.resource.geometry;
+            object.addData(geojson);
+        }
+    }
+
+
+    private defineMapBehavior() {
 
         // Map event handling. Change layer on specific zoom level.
         this.map.on('zoom',() => {
-            console.log("Zoom level: " + this.map.getZoom())
             if (this.map.getZoom() == 4) {
                 this.docs.addTo(this.map);
                 this.mains.setStyle({ opacity: 1, fillOpacity: 0, dashArray: '10,10' } as any);
@@ -52,39 +89,5 @@ export class MapComponent implements OnInit {
                 }
             }
         })
-
-    }
-
-
-    private async getDetailData () {
-
-        try {
-            const documents = await this.datastore.find({ q: '', project: this.project, geometry: 'Polygon', type: 'Layer' } as any)
-            this.docs = L.geoJSON();
-            for (let doc of documents) {
-                let geojson = doc.resource.geometry;
-                this.docs.addData(geojson);
-            }
-        } catch (err) {
-            console.error(err)
-        }
-    }
-
-
-    // Function that calls for main operations, like trenches.
-    private async getMainOps () {
-
-        try {
-            const documents = await this.datastore.find({q: '', project: this.project, type: 'Trench'} as any)
-
-            this.mains = L.geoJSON().addTo(this.map);
-            for (let doc of documents) {
-                let geojson = doc.resource.geometry;
-                this.mains.addData(geojson);
-            }
-            this.map.fitBounds(this.mains.getBounds());
-        } catch (err) {
-            err => console.error(err)
-        }
     }
 }
