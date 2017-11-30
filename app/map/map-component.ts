@@ -65,7 +65,7 @@ export class MapComponent implements OnInit {
     }
 
 
-    private createGeoJsonObjects (docs: Document[], object: any) {
+    private createGeoJsonObjects (docs: any, object: L.GeoJSON) {
 
         for (let doc of docs) {
             let geojson = doc.resource.geometry;
