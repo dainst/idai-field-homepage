@@ -53,7 +53,7 @@
             </div>
             <div *ngIf="selectedDocument.hasGazId" class="row sidebar-padding">
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-map-marker"></i></div>
-                <div class="col-md9 sidebar-metadata-label"><a href="https://gazetteer.dainst.org/place/{{selectedDocument.hasGazId}}">{{selectedDocument.hasGazId}}</a></div>
+                <div class="col-md9 sidebar-metadata-label"><a href="https://gazetteer.dainst.org/place/{{selectedDocument.hasGazId}}">{{selectedDocument.hasLocation.label}}</a></div>
             </div>
         </div>
     </div>
