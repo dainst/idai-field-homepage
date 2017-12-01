@@ -10570,27 +10570,5 @@
       "parent": "Find",
       "type": "Metal"
     }
-  ],
-  "views": [
-    {
-      "label": "Übersicht",
-      "mainType": "Project",
-      "name": "project"
-    },
-    {
-      "label": "Ausgrabung",
-      "mainType": "Trench",
-      "name": "excavation"
-    },
-    {
-      "label": "Bauaufnahme",
-      "mainType": "Building",
-      "name": "building"
-    },
-    {
-      "label": "Survey",
-      "mainType": "Survey",
-      "name": "survey"
-    }
   ]
 }

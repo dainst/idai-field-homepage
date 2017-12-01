@@ -2,7 +2,7 @@ import {Component, OnInit, Inject} from '@angular/core';
 import {Router, Event, NavigationStart} from '@angular/router';
 import {Messages} from 'idai-components-2/messages';
 import {ConfigLoader} from 'idai-components-2/configuration';
-import {AppConfigurator} from 'idai-components-2/idai-field-model';
+import {IdaiFieldAppConfigurator} from 'idai-components-2/idai-field-model';
 
 @Component({
     moduleId: module.id,
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
                 private configLoader: ConfigLoader,
                 private router: Router,
                 private messages: Messages,
-                private appConfigurator: AppConfigurator
+                private appConfigurator: IdaiFieldAppConfigurator
 
 
     ) {
