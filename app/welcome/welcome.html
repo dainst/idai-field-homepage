@@ -3,6 +3,8 @@
         <div [class.col-md-12]="!selectedDocument"
              [class.col-md-9]="selectedDocument" class="projectMap::after" id="projectMap">
         </div>
+        <welcome-sidebar [document]="selectedDocument"></welcome-sidebar>
+        <!--
         <div *ngIf="selectedDocument" class="col-md-3 container-fluid nopadding sidebar" id="sidebar">
             <div class="sidebar-image"><img class="img-responsive img-center" style="height: 150px;"  src="../../img/background.png"></div>
             <div class="jumbotron">
@@ -55,6 +57,6 @@
                 <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-map-marker"></i></div>
                 <div class="col-md9 sidebar-metadata-label"><a href="https://gazetteer.dainst.org/place/{{selectedDocument.hasGazId}}">{{selectedDocument.hasLocation.label}}</a></div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

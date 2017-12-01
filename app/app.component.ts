@@ -1,9 +1,7 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {Router, Event, NavigationStart} from '@angular/router';
 import {Messages} from 'idai-components-2/messages';
-import {ConfigLoader,
-    ConfigurationPreprocessor,
-    ConfigurationValidator} from 'idai-components-2/configuration';
+import {ConfigLoader} from 'idai-components-2/configuration';
 import {AppConfigurator} from 'idai-components-2/idai-field-model';
 
 @Component({

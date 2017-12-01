@@ -1,0 +1,53 @@
+<div *ngIf="document" class="col-md-3 container-fluid nopadding sidebar" id="sidebar">
+    <div class="sidebar-image"><img class="img-responsive img-center" style="height: 150px;"  src="../../img/background.png"></div>
+    <div class="jumbotron">
+        <h1>{{document.name}}</h1>
+        Projekt
+    </div>
+    <div class="row sidebar-padding">
+        <div class="col-md4" style="width: 33%;">
+            <a class="sidebar-button" href="http://localhost:8085/#/map/meninx-project">
+                <i class="fa fa-database fa-2x"></i>
+                <div class="sidebar-button-label"><b>ZUM PROJEKT</b></div>
+            </a>
+        </div>
+        <div class="col-md4" style="width: 33%;">
+            <a class="sidebar-button" href="http://www.klass-archaeologie.uni-muenchen.de/forschung/projekte1/d-projekte-laufend/meninx/index.html" target="_blank">
+                <i class="fa fa-globe fa-2x"></i>
+                <div class="sidebar-button-label"><b>HOMEPAGE</b></div>
+            </a>
+        </div>
+        <div class="col-md4" style="width: 33%;">
+            <a class="sidebar-button" href="https://gazetteer.dainst.org/place/{{document.hasGazId}}">
+                <i class="fa fa-map-marker fa-2x"></i>
+                <div class="sidebar-button-label"><b>GAZETTEER</b></div>
+            </a>
+        </div>
+    </div>
+    <hr>
+    <div *ngIf="document.shortDescription">
+        <p class="sidebar-padding">{{document.shortDescription}}</p>
+        <hr>
+    </div>
+    <div *ngIf="document.hasSupervisor" class="row sidebar-padding">
+        <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-group"></i></div>
+        <div class="col-md9 sidebar-metadata-label">{{document.hasSupervisor}}</div>
+    </div>
+    <div *ngIf="document.hasContactPerson" class="row sidebar-padding">
+        <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-address-card"></i></div>
+        <div class="col-md9 sidebar-metadata-label">{{document.hasContactPerson}}</div>
+    </div>
+    <div *ngIf="document.hasContactMail" class="row sidebar-padding">
+        <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-envelope"></i></div>
+        <div class="col-md9 sidebar-metadata-label">{{document.hasContactMail}}</div>
+    </div>
+    <div *ngIf="document.hasInsitution" class="row sidebar-padding">
+        <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-bank"></i></div>
+        <div class="col-md9 sidebar-metadata-label">{{document.hasInsitution}}</div>
+        <div class="clearfix"></div>
+    </div>
+    <div *ngIf="document.hasGazId" class="row sidebar-padding">
+        <div class="col-md3 sidebar-metadata-icon"><i class="fa fa-map-marker"></i></div>
+        <div class="col-md9 sidebar-metadata-label"><a href="https://gazetteer.dainst.org/place/{{document.hasGazId}}">{{document.hasLocation.label}}</a></div>
+    </div>
+</div>
