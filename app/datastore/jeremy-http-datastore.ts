@@ -4,6 +4,7 @@ import {Document} from "idai-components-2/core";
 import {ReadDatastore} from 'idai-components-2/datastore'
 import {Injectable} from "@angular/core";
 import {AuthService} from "../auth-service";
+import {Observable} from 'rxjs/Observable';
 
 
 @Injectable()
@@ -37,29 +38,25 @@ export class JeremyHttpDatastore implements ReadDatastore {
 
     find(query: Query, offset?: number, limit?: number): Promise<Document[]> {
 
-        return new Promise<any>((resolve,reject)=>{
-            let querystring;
 
-            let q = query.q;
-            if (q == undefined || q == "") {
-                q = "*";
-            } else {
-                q = query.q + "*";
-            }
+        const type = query.types && query.types.length > 0 ? query.types[0] : undefined;
+
+        return new Promise<any>((resolve,reject)=>{
+
+            let q = query.q == undefined || query.q == "" ? "*" : query.q + "*";
 
             if (query['project'] !== undefined || query['project'] == "") {
                 q = q+" AND dataset:\""+query['project']+"\"";
             }
-            if (query['type'] !== undefined || query['type'] == "") {
-                q = q+" AND resource.type:"+query['type'];
+            if (type !== undefined || type == "") {
+                q = q+" AND resource.type:"+type;
             }
-            if (query['geometry'] !== undefined || query['type'] == "") {
+            if (query['geometry'] !== undefined || type == "") {
                 q = q+" AND resource.geometry.type:"+query['geometry'];
             }
 
             // TODO: Removal of geometry restriction after implementation of Exists ES Query in Jeremy #7116
-            querystring = '/data/resource/?q='+q+"&size=1000";
-            this.http.get(querystring,{headers: this.authService.getHeaders()}
+            this.http.get('/data/resource/?q='+q+"&size=1000",{headers: this.authService.getHeaders()}
                 ).subscribe(response => {
                 let objects = JSON.parse(response['_body']).results;
 
@@ -70,15 +67,8 @@ export class JeremyHttpDatastore implements ReadDatastore {
     }
 
 
-    all(type?: string, offset?: number, limit?: number): Promise<Document[]> {
+    remoteChangesNotifications(): Observable<Document> {
 
         return undefined;
     }
-
-
-    refresh(doc: Document): Promise<Document> {
-
-        return undefined;
-    }
-
 }

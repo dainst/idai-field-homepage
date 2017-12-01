@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {JeremyHttpDatastore} from "../datastore/jeremy-http-datastore";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Query} from"idai-components-2/datastore";
 
 @Component({
     moduleId: module.id,
@@ -45,7 +46,8 @@ export class MapComponent implements OnInit {
     private async getDetailData () {
 
         try {
-            const documents = await this.datastore.find({ q: '', project: this.project, geometry: 'Polygon', type: 'Layer' } as any);
+            // TODO
+            const documents = await this.datastore.find({ q: '', project: this.project, geometry: 'Polygon', types: ['Layer'] } as any);
             this.createGeoJsonObjects(documents, this.docs);
         } catch (err) {
             console.error(err)
@@ -56,7 +58,9 @@ export class MapComponent implements OnInit {
     private async getMainOperations () {
 
         try {
-            const documents = await this.datastore.find({q: '', project: this.project, type: 'Trench'} as any);
+            const q: Query = {q: '', types: ['Trench']};
+            q['project'] = this.project;
+            const documents = await this.datastore.find(q);
             this.createGeoJsonObjects(documents, this.mains);
             this.map.fitBounds(this.mains.getBounds());
         } catch (err) {

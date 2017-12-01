@@ -60,7 +60,7 @@ export class WelcomeComponent implements OnInit {
     private async addProjects() {
 
         try {
-            const documents = await this.datastore.find({q: '', type: 'Project'});
+            const documents = await this.datastore.find({q: '', types: ['Project']} as any);
             this.addMarkersToMap(documents);
 
         } catch (err) {
