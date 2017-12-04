@@ -19,6 +19,6 @@ export class WelcomeSidebarComponent {
 
     private changeColor() {
 
-        return this.sanitization.bypassSecurityTrustStyle('color:#2A2B2C');
+        return this.sanitization.bypassSecurityTrustStyle('color:#2A2B2C'); 
     }
 }
