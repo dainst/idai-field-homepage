@@ -81,8 +81,6 @@ export class WelcomeComponent implements OnInit {
 
     private selectDocumentOnSidebar(doc: Document) {
 
-        console.log(doc);
-
         this.selectedDocument = doc.resource;
         this.selectedDocument.name = TitleGenerator.resolveProjectName(doc.resource.identifier);
     }
