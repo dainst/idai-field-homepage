@@ -57,7 +57,7 @@ export class WelcomeComponent implements OnInit {
     }
 
 
-    // reset basemaps to fix bug of disappearing basemaps #7222 
+    // reset basemaps to fix bug of disappearing basemaps #7222
     ngAfterViewInit() {
 
         this.map.removeLayer(WelcomeComponent.baseMaps.CartoDB);
