@@ -14,10 +14,11 @@ export class WelcomeSidebarComponent {
 
     @Input() document: any;
 
-    constructor(private sanitization:DomSanitizer) {
-    }
+    constructor(private sanitization:DomSanitizer) {}
+
 
     private changeColor() {
+
         return this.sanitization.bypassSecurityTrustStyle('color:#2A2B2C');
     }
 }
