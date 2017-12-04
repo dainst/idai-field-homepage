@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ReadDatastore} from 'idai-components-2/datastore';
 import {Document} from 'idai-components-2/core';
@@ -54,6 +54,14 @@ export class WelcomeComponent implements OnInit {
         L.control.layers(WelcomeComponent.baseMaps).addTo(this.map);
 
         this.addProjects();
+    }
+
+
+    // reset basemaps to fix bug of disappearing basemaps #7222
+    ngAfterViewInit() {
+        
+        this.map.removeLayer(WelcomeComponent.baseMaps.CartoDB);
+        this.map.addLayer(WelcomeComponent.baseMaps.CartoDB);
     }
 
 
