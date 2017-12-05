@@ -2,7 +2,7 @@ import {Routes,RouterModule} from '@angular/router';
 import {ListingComponent} from "./listing/listing.component";
 import {ViewComponent} from "./listing/view-component";
 import {WrapperComponent} from "./listing/wrapper-component";
-import {MapComponent} from "./map/map-component";
+import {ProjectViewComponent} from "./project/project-view.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {NothingComponent} from "./listing/nothing.component";
 import {SignInComponent} from "./sign-in-component";
@@ -27,7 +27,7 @@ const routes: Routes = [
     },
     {
         path: 'map/:id',
-        component: MapComponent,
+        component: ProjectViewComponent,
         children: [{
             path: '',
             component: NothingComponent

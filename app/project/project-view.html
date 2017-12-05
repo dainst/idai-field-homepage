@@ -1,0 +1,9 @@
+<div class="container-fluid">
+    <map [selectedDocument]="selectedDocument"
+         [documents]="documents"
+         [mainTypeDocument]="projectDocument"
+         [projectDocument]="projectDocument"
+         [update]="true"
+         (onSelectDocument)="selectDocument($event)"
+         style="height: 1000px; width: 1000px"></map>
+</div>

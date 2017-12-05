@@ -8,6 +8,7 @@ import {IdaiMessagesModule, Messages, MD} from 'idai-components-2/messages';
 import {IdaiDocumentsModule, DocumentEditChangeMonitor} from 'idai-components-2/documents';
 import {IdaiFieldMapModule} from 'idai-components-2/idai-field-map';
 // import {PersistenceManager} from 'idai-components-2/persist';
+import {ProjectMapComponent} from './project/map/project-map.component';
 import {ConfigLoader} from 'idai-components-2/configuration';
 import {routing, appRoutingProviders} from './app.routing';
 import {M} from './m';
@@ -21,7 +22,7 @@ import CONFIG = require('config/config.json!json');
 import {ListingComponent} from './listing/listing.component';
 import {ViewComponent} from './listing/view-component';
 import {WrapperComponent} from './listing/wrapper-component';
-import {MapComponent} from './map/map-component';
+import {ProjectViewComponent} from './project/project-view.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {NothingComponent} from './listing/nothing.component';
 import {IdaiFieldAppConfigurator} from 'idai-components-2/idai-field-model';
@@ -47,11 +48,12 @@ import {WelcomeSidebarComponent} from './welcome/welcome-sidebar.component';
         ListingComponent, // TODO necessary here when shown in outlet?
         ViewComponent, // TODO ?
         WrapperComponent,
-        MapComponent,
+        ProjectViewComponent,
         WelcomeSidebarComponent,
         WelcomeComponent,
         NothingComponent,
-        SignInComponent
+        SignInComponent,
+        ProjectMapComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

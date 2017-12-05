@@ -3,22 +3,25 @@ import {JeremyHttpDatastore} from "../datastore/jeremy-http-datastore";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Query} from "idai-components-2/datastore";
 import {Document} from "idai-components-2/core";
+import {MapComponent} from 'idai-components-2/idai-field-map';
 
 @Component({
     moduleId: module.id,
-    templateUrl: './map.html'
+    templateUrl: './project-view.html'
 })
 
 /**
  * @author Philipp Gerth
  */
 
-export class MapComponent implements OnInit {
+export class ProjectViewComponent implements OnInit {
     private documents: Array<Document>;
     private map: L.Map;
     private mains: L.GeoJSON;
     private docs: L.GeoJSON;
-    private project: string;
+    private projectId: string;
+    private projectDocument: Document;
+    private selectedDocument: Document;
 
 
     constructor(private route: ActivatedRoute,private router: Router, private datastore: JeremyHttpDatastore) { }
@@ -27,56 +30,55 @@ export class MapComponent implements OnInit {
     ngOnInit(): void {
 
         this.route.params.forEach((params: Params) => {
-            this.project = params['id'];
+            this.projectId = params['id'];
         });
 
-        this.map = L.map('map', {
-            zoom: 5,
-            crs: L.CRS.Simple,
-        });
-
-        this.mains = L.geoJSON().addTo(this.map);
-        this.docs = L.geoJSON();
-
-        this.getMainOperations();
-        this.getDetailData();
-        this.defineMapBehavior();
+        this.fetchProjectDocument();
+        this.fetchMainOperations();
     }
 
 
-    private async getDetailData () {
+    public selectDocument(document: Document) {
+        this.selectedDocument = document;
+    }
+
+
+    private async getDetailData() {
 
         try {
             const q: Query = {q: '', types: ['Layer']};
-            q['project'] = this.project;
+            q['project'] = this.projectId;
             q['geometry'] = 'Polygon';
-            const documents = await this.datastore.find(q);
-            this.createGeoJsonObjects(documents, this.docs);
+            this.documents = await this.datastore.find(q);
+            console.log(this.documents);
+            // this.createGeoJsonObjects(this.documents, this.docs);
         } catch (err) {
             console.error(err)
         }
     }
 
 
-    private async getMainOperations () {
+    private async fetchProjectDocument() {
 
         try {
-            const q: Query = {q: '', types: ['Trench']};
-            q['project'] = this.project;
-            const documents = await this.datastore.find(q);
-            this.createGeoJsonObjects(documents, this.mains);
-            this.map.fitBounds(this.mains.getBounds());
+            this.projectDocument = await this.datastore.getById(this.projectId);
         } catch (err) {
-            err => console.error(err)
+            console.error(err)
         }
     }
 
 
-    private createGeoJsonObjects (docs: Document[], object: L.GeoJSON) {
+    private async fetchMainOperations() {
 
-        for (let doc of docs) {
-            let geojson = doc.resource.geometry;
-            object.addData(geojson);
+        try {
+            const q: Query = {q: '', types: ['Trench']};
+            q['project'] = this.projectId;
+            this.documents = await this.datastore.find(q);
+            console.log(this.documents);
+            // this.createGeoJsonObjects(this.documents, this.mains);
+            // this.map.fitBounds(this.mains.getBounds());
+        } catch (err) {
+            err => console.error(err)
         }
     }
 
