@@ -49,7 +49,8 @@ export class ProjectViewComponent implements OnInit {
             const q: Query = {q: '', types: ['Layer']};
             q['project'] = this.projectId;
             q['geometry'] = 'Polygon';
-            this.subDocuments = await this.datastore.find(q);
+            this.subDocuments = await this.datastore.findDocs(q);
+            console.log(this.subDocuments);
         } catch (err) {
             console.error(err);
         }
@@ -71,7 +72,7 @@ export class ProjectViewComponent implements OnInit {
         try {
             const q: Query = {q: '', types: ['Trench']};
             q['project'] = this.projectId;
-            this.mainDocuments = await this.datastore.find(q);
+            this.mainDocuments = await this.datastore.findDocs(q);
         } catch (err) {
             err => console.error(err);
         }

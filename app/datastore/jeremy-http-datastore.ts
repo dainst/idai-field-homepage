@@ -1,7 +1,7 @@
 import {Http} from '@angular/http';
 import {Query} from "idai-components-2/datastore";
 import {Document} from "idai-components-2/core";
-import {ReadDatastore} from 'idai-components-2/datastore'
+import {ReadDatastore, FindResult} from 'idai-components-2/datastore'
 import {Injectable} from "@angular/core";
 import {AuthService} from "../auth-service";
 import {Observable} from 'rxjs/Observable';
@@ -10,6 +10,7 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 /**
  * @author Daniel de Oliveira
+ * @author Philipp Gerth
  */
 export class JeremyHttpDatastore implements ReadDatastore {
 
@@ -36,7 +37,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
         });
     }
 
-    find(query: Query, offset?: number, limit?: number): Promise<Document[]> {
+    findDocs(query: Query): Promise<Document[]>{
 
 
         const type = query.types && query.types.length > 0 ? query.types[0] : undefined;
@@ -64,6 +65,12 @@ export class JeremyHttpDatastore implements ReadDatastore {
 
             },error=>reject(error));
         });
+    }
+
+
+    find(query: Query): Promise<FindResult>{
+
+        return undefined;
     }
 
 

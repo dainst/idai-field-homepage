@@ -1,8 +1,8 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {ReadDatastore} from 'idai-components-2/datastore';
+import {Component, OnInit} from '@angular/core';
+import {Query} from 'idai-components-2/datastore';
 import {Document} from 'idai-components-2/core';
 import {TitleGenerator} from "./title-generator";
+import {JeremyHttpDatastore} from '../datastore/jeremy-http-datastore';
 
 @Component({
     moduleId: module.id,
@@ -32,7 +32,7 @@ export class WelcomeComponent implements OnInit {
     };
 
 
-    constructor(private datastore: ReadDatastore) {
+    constructor(private datastore: JeremyHttpDatastore) {
     }
 
 
@@ -68,7 +68,8 @@ export class WelcomeComponent implements OnInit {
     private async addProjects() {
 
         try {
-            const documents = await this.datastore.find({q: '', types: ['Project']} as any);
+            const q: Query = {q: '', types: ['Project']};
+            const documents = await this.datastore.findDocs(q);
             this.addMarkersToMap(documents);
 
         } catch (err) {

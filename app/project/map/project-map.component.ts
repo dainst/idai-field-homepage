@@ -8,6 +8,10 @@ import {IdaiFieldDocument} from 'idai-components-2/idai-field-model';
     templateUrl: './project-map.html'
 })
 
+/**
+ * @author Philipp Gerth
+ */
+
 export class ProjectMapComponent extends MapComponent {
 
     @Input() mainDocuments: Array<IdaiFieldDocument>;
