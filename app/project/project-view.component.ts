@@ -46,7 +46,7 @@ export class ProjectViewComponent implements OnInit {
     private async fetchSubDocuments() {
 
         try {
-            const q: Query = {q: '', types: ['Layer']};
+            const q: Query = {q: '', types: ['Layer', 'Floor', 'DrillCoreLayer', 'Grave', 'Architecture', 'Other']};
             q['project'] = this.projectId;
             q['geometry'] = 'Polygon';
             this.subDocuments = await this.datastore.findDocs(q);
