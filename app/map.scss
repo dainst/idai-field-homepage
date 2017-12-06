@@ -1,9 +1,3 @@
-#map-container {
-  width: 100%;
-  height: calc(100vh - 360px);
-  margin-top: 0px;
-}
-
 #projectMap {
   width: 100%;
   height: calc(100vh - 58px);
@@ -21,4 +15,11 @@
   height: calc(100vh - 58px);
   z-index: 800;
   pointer-events: none;
+}
+
+#map-container {
+  width: 100%;
+  margin-top: 0px;
+  position: relative;
+  height: calc(100vh - 58px);
 }

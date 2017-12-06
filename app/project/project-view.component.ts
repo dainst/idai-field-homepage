@@ -50,7 +50,6 @@ export class ProjectViewComponent implements OnInit {
             q['project'] = this.projectId;
             q['geometry'] = 'Polygon';
             this.subDocuments = await this.datastore.findDocs(q);
-            console.log(this.subDocuments);
         } catch (err) {
             console.error(err);
         }
