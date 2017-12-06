@@ -41,12 +41,11 @@ export class JeremyHttpDatastore implements ReadDatastore {
 
         let types = '';
 
-        console.log(types);
-
         return new Promise<any>((resolve,reject)=>{
 
             let q = query.q == undefined || query.q == '' ? '*' : query.q + '*';
             q = query['project'] !== undefined || query['project'] == '' ? q+' AND dataset:\"'+query['project']+'\"' : q;
+            q = query['exists'] !== undefined ? q+' AND _exists_:resource.'+query['exists'] : q;
 
             if (query.types && query.types.length > 0) {
 
@@ -55,12 +54,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
                 }
                 q = q+' AND resource.type:('+types+')';
             }
-            if (query['geometry'] !== undefined || query['geometry'] == '') {
-                q = q+' AND resource.geometry.type:'+query['geometry'];
-            }
 
-            console.log('/data/resource/?q='+q+"&size=1000");
-            // TODO: Removal of geometry restriction after implementation of Exists ES Query in Jeremy #7116
             this.http.get('/data/resource/?q='+q+"&size=1000",{headers: this.authService.getHeaders()}
                 ).subscribe(response => {
                 let objects = JSON.parse(response['_body']).results;

@@ -45,11 +45,11 @@ export class ProjectViewComponent implements OnInit {
 
     private async fetchSubDocuments() {
 
+        // TODO: add the following: 'Metal', 'Pottery', 'Glass', 'Mollusk', 'Brick', 'Wood', 'Bone', 'Terracotta', 'Stone', 'Coin', 'PlasterFragment'
         try {
-            const q: Query = {q: '', types: ['Layer', 'Floor', 'DrillCoreLayer', 'Grave', 'Architecture', 'Other', 'Metal',
-                'Pottery', 'Glass', 'Mollusk', 'Brick', 'Wood', 'Bone', 'Terracotta', 'Stone', 'Coin', 'PlasterFragment']};
+            const q: Query = {q: '', types: ['Layer', 'Floor', 'DrillCoreLayer', 'Grave', 'Architecture', 'Other']};
             q['project'] = this.projectId;
-            q['geometry'] = 'Polygon';
+            q['exists'] = 'geometry';
             this.subDocuments = await this.datastore.findDocs(q);
         } catch (err) {
             console.error(err);
