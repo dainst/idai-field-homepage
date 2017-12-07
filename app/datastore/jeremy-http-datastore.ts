@@ -14,6 +14,7 @@ import {Observable} from 'rxjs/Observable';
  */
 export class JeremyHttpDatastore implements ReadDatastore {
 
+
     constructor(
         private http:Http,
         private authService: AuthService
@@ -48,35 +49,12 @@ export class JeremyHttpDatastore implements ReadDatastore {
 
         return undefined;
     }
-    
+
 
     findDocs(query: Query): Promise<Document[]>{
 
-        let types = '';
-
         return new Promise<any>((resolve,reject)=>{
-
-            let q = query.q == undefined || query.q == '' ? '*' : query.q + '*';
-            q = query['project'] !== undefined || query['project'] == '' ? q+' AND dataset:\"'+query['project']+'\"' : q;
-            q = query['exists'] !== undefined ? q+' AND _exists_:resource.'+query['exists'] : q;
-
-            if (query.types && query.types.length > 0) {
-
-                for (let queryType of query.types) {
-                    types = types + ' ' + queryType;
-                }
-            }
-
-            if (query['ignore']) {
-                for (let ignoreType of query['ignore']) {
-                    types = types + ' !' + ignoreType;
-                }
-            }
-
-            q = query['ignore'] || query.types ? q+' AND resource.type:('+types+')' : q;
-
-            console.log(q);
-            this.http.get('/data/resource/?q='+q+'&size=1000',{headers: this.authService.getHeaders()}
+            this.http.get(JeremyHttpDatastore.queryBuilder(query),{headers: this.authService.getHeaders()}
                 ).subscribe(response => {
                 let objects = JSON.parse(response['_body']).results;
 
@@ -84,5 +62,31 @@ export class JeremyHttpDatastore implements ReadDatastore {
 
             },error=>reject(error));
         });
+    }
+
+
+    private static queryBuilder(query: Query) {
+
+        let types = '';
+
+        let q = query.q == undefined || query.q == '' ? '*' : query.q + '*';
+        q = query['project'] !== undefined || query['project'] == '' ? q+' AND dataset:\"'+query['project']+'\"' : q;
+        q = query['exists'] !== undefined ? q+' AND _exists_:resource.'+query['exists'] : q;
+
+        if (query.types && query.types.length > 0) {
+
+            for (let queryType of query.types) {
+                types = types + ' ' + queryType;
+            }
+        }
+
+        if (query['ignore']) {
+            for (let ignoreType of query['ignore']) {
+                types = types + ' !' + ignoreType;
+            }
+        }
+
+        q = query['ignore'] || query.types ? q+' AND resource.type:('+types+')' : q;
+        return q = '/data/resource/?q='+q+'&size=1000';
     }
 }
