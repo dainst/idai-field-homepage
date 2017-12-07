@@ -3,7 +3,6 @@ import {JeremyHttpDatastore} from "../datastore/jeremy-http-datastore";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Query} from "idai-components-2/datastore";
 import {Document} from "idai-components-2/core";
-import {MapComponent} from 'idai-components-2/idai-field-map';
 
 @Component({
     moduleId: module.id,
@@ -59,7 +58,7 @@ export class ProjectViewComponent implements OnInit {
 
         // TODO: add the following: 'Metal', 'Pottery', 'Glass', 'Mollusk', 'Brick', 'Wood', 'Bone', 'Terracotta', 'Stone', 'Coin', 'PlasterFragment'
         try {
-            const q: Query = {q: '', types: ['Pottery', 'Floor', 'DrillCoreLayer', 'Grave', 'Architecture', 'Other']};
+            const q: Query = {q: ''};
             q['project'] = this.projectId;
             q['exists'] = 'geometry';
             q['ignore'] = this.mainTypes;

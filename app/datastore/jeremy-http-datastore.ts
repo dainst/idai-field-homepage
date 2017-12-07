@@ -37,6 +37,19 @@ export class JeremyHttpDatastore implements ReadDatastore {
         });
     }
 
+
+    find(query: Query): Promise<FindResult>{
+
+        return undefined;
+    }
+
+
+    remoteChangesNotifications(): Observable<Document> {
+
+        return undefined;
+    }
+    
+
     findDocs(query: Query): Promise<Document[]>{
 
         let types = '';
@@ -52,9 +65,17 @@ export class JeremyHttpDatastore implements ReadDatastore {
                 for (let queryType of query.types) {
                     types = types + ' ' + queryType;
                 }
-                q = q+' AND resource.type:('+types+')';
             }
 
+            if (query['ignore']) {
+                for (let ignoreType of query['ignore']) {
+                    types = types + ' !' + ignoreType;
+                }
+            }
+
+            q = query['ignore'] || query.types ? q+' AND resource.type:('+types+')' : q;
+
+            console.log(q);
             this.http.get('/data/resource/?q='+q+'&size=1000',{headers: this.authService.getHeaders()}
                 ).subscribe(response => {
                 let objects = JSON.parse(response['_body']).results;
@@ -63,17 +84,5 @@ export class JeremyHttpDatastore implements ReadDatastore {
 
             },error=>reject(error));
         });
-    }
-
-
-    find(query: Query): Promise<FindResult>{
-
-        return undefined;
-    }
-
-
-    remoteChangesNotifications(): Observable<Document> {
-
-        return undefined;
     }
 }
