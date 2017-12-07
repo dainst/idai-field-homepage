@@ -70,7 +70,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
         let types = '';
 
         let q = query.q == undefined || query.q == '' ? '*' : query.q + '*';
-        q = query['project'] !== undefined || query['project'] == '' ? q+' AND dataset:\"'+query['project']+'\"' : q;
+        q = query['project'] !== undefined || query['project'] !== '' ? q+' AND dataset:\"'+query['project']+'\"' : q;
         q = query['exists'] !== undefined ? q+' AND _exists_:resource.'+query['exists'] : q;
 
         if (query.types && query.types.length > 0) {
