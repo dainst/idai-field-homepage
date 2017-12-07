@@ -2,15 +2,20 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {MapComponent} from 'idai-components-2/idai-field-map';
 import {IdaiFieldDocument} from 'idai-components-2/idai-field-model';
 
+// no typings for VectorMarkers available
+declare global {
+    namespace L {
+        module VectorMarkers {
+            function icon(option: any): any;
+        }
+    }
+}
+
 @Component({
     moduleId: module.id,
     selector: 'project-map',
     templateUrl: './project-map.html'
 })
-
-/**
- * @author Philipp Gerth
- */
 
 export class ProjectMapComponent extends MapComponent {
 

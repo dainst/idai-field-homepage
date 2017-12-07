@@ -59,7 +59,7 @@ export class ProjectViewComponent implements OnInit {
 
         // TODO: add the following: 'Metal', 'Pottery', 'Glass', 'Mollusk', 'Brick', 'Wood', 'Bone', 'Terracotta', 'Stone', 'Coin', 'PlasterFragment'
         try {
-            const q: Query = {q: '', types: ['Layer', 'Floor', 'DrillCoreLayer', 'Grave', 'Architecture', 'Other']};
+            const q: Query = {q: '', types: ['Pottery', 'Floor', 'DrillCoreLayer', 'Grave', 'Architecture', 'Other']};
             q['project'] = this.projectId;
             q['exists'] = 'geometry';
             q['ignore'] = this.mainTypes;

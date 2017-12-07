@@ -55,7 +55,7 @@ export class JeremyHttpDatastore implements ReadDatastore {
                 q = q+' AND resource.type:('+types+')';
             }
 
-            this.http.get('/data/resource/?q='+q+"&size=1000",{headers: this.authService.getHeaders()}
+            this.http.get('/data/resource/?q='+q+'&size=1000',{headers: this.authService.getHeaders()}
                 ).subscribe(response => {
                 let objects = JSON.parse(response['_body']).results;
 
