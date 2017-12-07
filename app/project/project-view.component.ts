@@ -21,6 +21,8 @@ export class ProjectViewComponent implements OnInit {
     private projectId: string;
     private projectDocument: Document;
     private selectedDocument: Document;
+    // TODO: more dynamic main Types as declared in Configuration.json
+    private mainTypes: Array<string> = ['Trench', 'Survey', 'Building'];
 
 
     constructor(private route: ActivatedRoute,private router: Router, private datastore: JeremyHttpDatastore) { }
@@ -43,20 +45,6 @@ export class ProjectViewComponent implements OnInit {
     }
 
 
-    private async fetchSubDocuments() {
-
-        // TODO: add the following: 'Metal', 'Pottery', 'Glass', 'Mollusk', 'Brick', 'Wood', 'Bone', 'Terracotta', 'Stone', 'Coin', 'PlasterFragment'
-        try {
-            const q: Query = {q: '', types: ['Layer', 'Floor', 'DrillCoreLayer', 'Grave', 'Architecture', 'Other']};
-            q['project'] = this.projectId;
-            q['exists'] = 'geometry';
-            this.subDocuments = await this.datastore.findDocs(q);
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
-
     private async fetchProjectDocument() {
 
         try {
@@ -67,10 +55,25 @@ export class ProjectViewComponent implements OnInit {
     }
 
 
+    private async fetchSubDocuments() {
+
+        // TODO: add the following: 'Metal', 'Pottery', 'Glass', 'Mollusk', 'Brick', 'Wood', 'Bone', 'Terracotta', 'Stone', 'Coin', 'PlasterFragment'
+        try {
+            const q: Query = {q: '', types: ['Layer', 'Floor', 'DrillCoreLayer', 'Grave', 'Architecture', 'Other']};
+            q['project'] = this.projectId;
+            q['exists'] = 'geometry';
+            q['ignore'] = this.mainTypes;
+            this.subDocuments = await this.datastore.findDocs(q);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+
     private async fetchMainDocuments() {
 
         try {
-            const q: Query = {q: '', types: ['Trench']};
+            const q: Query = {q: '', types: this.mainTypes};
             q['project'] = this.projectId;
             this.mainDocuments = await this.datastore.findDocs(q);
         } catch (err) {
