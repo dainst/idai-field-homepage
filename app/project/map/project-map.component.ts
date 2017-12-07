@@ -42,7 +42,8 @@ export class ProjectMapComponent extends MapComponent {
 
 
     protected resetMap() {
-
+        
+        this.mainTypeDocument = this.projectDocument;
         super.clearMap();
         this.addGeometriesToMap();
     }
@@ -56,7 +57,10 @@ export class ProjectMapComponent extends MapComponent {
 
         if (this.mainDocuments) {
             for (let document of this.mainDocuments) {
-                if (document.resource.geometry) super.addGeometryToMap(document);
+                if (document.resource.geometry) {
+                    if (this.showSubDocuments) this.mainTypeDocument = document;
+                    super.addGeometryToMap(document);
+                }
             }
         }
 
