@@ -42,7 +42,7 @@ export class ProjectMapComponent extends MapComponent {
 
 
     protected resetMap() {
-        
+
         this.mainTypeDocument = this.projectDocument;
         super.clearMap();
         this.addGeometriesToMap();
