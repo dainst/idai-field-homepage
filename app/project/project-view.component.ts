@@ -76,7 +76,7 @@ export class ProjectViewComponent implements OnInit {
             q['project'] = this.projectId;
             this.mainDocuments = (await this.datastore.find(q)).documents;
         } catch (err) {
-            err => console.error(err);
+            console.error(err);
         }
     }
 }
