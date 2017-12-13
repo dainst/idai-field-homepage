@@ -1,7 +1,6 @@
-import {ActivatedRoute, Params, Router, NavigationEnd} from "@angular/router";
-import {Component,OnInit} from "@angular/core";
-import {ReadDatastore} from 'idai-components-2/datastore'
-import {JeremyHttpDatastore} from "../datastore/jeremy-http-datastore";
+import {ActivatedRoute, Params} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {JeremyHttpDatastore} from '../datastore/jeremy-http-datastore';
 
 @Component({
     moduleId: module.id,
@@ -12,21 +11,19 @@ import {JeremyHttpDatastore} from "../datastore/jeremy-http-datastore";
  */
 export class ViewComponent implements OnInit {
 
-    private inLoop = false;
     private doc;
 
-    constructor(private route: ActivatedRoute,private router: Router, private datastore: JeremyHttpDatastore) { }
+    constructor(
+        private route: ActivatedRoute,
+        private datastore: JeremyHttpDatastore) { }
+
 
     ngOnInit() {
 
         this.route.params.forEach((params: Params) => {
-            this.datastore.getById(params['id']).then(doc=>{
-                this.doc = doc;
-            },
-            err=>console.error("err in View component",err))
+            this.datastore.get(params['id']).then(doc => this.doc = doc,
+                err=>console.error("err in View component",err))
         })
-
     }
-
 }
 

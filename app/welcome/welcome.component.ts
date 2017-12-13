@@ -69,7 +69,7 @@ export class WelcomeComponent implements OnInit {
 
         try {
             const q: Query = {q: '', types: ['Project']};
-            const documents = await this.datastore.findDocs(q);
+            const documents = (await this.datastore.find(q)).documents;
             this.addMarkersToMap(documents);
 
         } catch (err) {

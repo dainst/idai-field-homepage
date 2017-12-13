@@ -1,10 +1,8 @@
 import {Http} from '@angular/http';
-import {Query} from "idai-components-2/datastore";
-import {Document} from "idai-components-2/core";
-import {ReadDatastore, FindResult} from 'idai-components-2/datastore'
-import {Injectable} from "@angular/core";
-import {AuthService} from "../auth-service";
-import {Observable} from 'rxjs/Observable';
+import {FindResult, Query, ReadDatastore} from 'idai-components-2/datastore';
+import {Document} from 'idai-components-2/core';
+import {Injectable} from '@angular/core';
+import {AuthService} from '../auth-service';
 
 
 @Injectable()
@@ -23,44 +21,27 @@ export class JeremyHttpDatastore implements ReadDatastore {
 
     get(resourceId: string): Promise<Document> {
 
-        return undefined;
-    }
-
-
-    getById(resourceId: string): Promise<Document> {
-
         return new Promise<any>((resolve,reject)=>{
             const querystring = '/data/resource/'+resourceId;
             this.http.get(querystring,{headers:this.authService.getHeaders()}
-                ).subscribe(response => {
-                    resolve(JSON.parse(response['_body']))
-                },error=>reject(error));
+            ).subscribe(response => {
+                resolve(JSON.parse(response['_body']))
+            },error=>reject(error));
         });
     }
 
 
-    find(query: Query): Promise<FindResult>{
-
-        return undefined;
-    }
-
-
-    remoteChangesNotifications(): Observable<Document> {
-
-        return undefined;
-    }
-
-
-    findDocs(query: Query): Promise<Document[]>{
+    public find(query: Query): Promise<FindResult>{
 
         return new Promise<any>((resolve,reject)=>{
-            this.http.get(JeremyHttpDatastore.queryBuilder(query),{headers: this.authService.getHeaders()}
-                ).subscribe(response => {
-                let objects = JSON.parse(response['_body']).results;
-
-                resolve(objects);
-
-            },error=>reject(error));
+            this.http.get(JeremyHttpDatastore.queryBuilder(query),
+                {headers: this.authService.getHeaders()}
+            ).subscribe(
+                response =>
+                    resolve(JSON.parse(response['_body']).results)
+                ,
+                error=>reject(error)
+            );
         });
     }
 

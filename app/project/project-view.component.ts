@@ -1,8 +1,8 @@
-import {Component, OnInit} from "@angular/core";
-import {JeremyHttpDatastore} from "../datastore/jeremy-http-datastore";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Query} from "idai-components-2/datastore";
-import {Document} from "idai-components-2/core";
+import {Component, OnInit} from '@angular/core';
+import {JeremyHttpDatastore} from '../datastore/jeremy-http-datastore';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {Query} from 'idai-components-2/datastore';
+import {Document} from 'idai-components-2/core';
 
 @Component({
     moduleId: module.id,
@@ -47,7 +47,7 @@ export class ProjectViewComponent implements OnInit {
     private async fetchProjectDocument() {
 
         try {
-            this.projectDocument = await this.datastore.getById(this.projectId);
+            this.projectDocument = await this.datastore.get(this.projectId);
         } catch (err) {
             console.error(err);
         }
@@ -62,7 +62,7 @@ export class ProjectViewComponent implements OnInit {
             q['project'] = this.projectId;
             q['exists'] = 'geometry';
             q['ignore'] = this.mainTypes;
-            this.subDocuments = await this.datastore.findDocs(q);
+            this.subDocuments = (await this.datastore.find(q)).documents;
         } catch (err) {
             console.error(err);
         }
@@ -74,7 +74,7 @@ export class ProjectViewComponent implements OnInit {
         try {
             const q: Query = {q: '', types: this.mainTypes};
             q['project'] = this.projectId;
-            this.mainDocuments = await this.datastore.findDocs(q);
+            this.mainDocuments = (await this.datastore.find(q)).documents;
         } catch (err) {
             err => console.error(err);
         }
