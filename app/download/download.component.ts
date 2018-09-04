@@ -16,6 +16,33 @@ export class DownloadComponent implements OnInit {
 
     private latestTag: string;
 
+    private images = [
+        {
+            url: "https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-1.png",
+            desc: "Metadata editor"
+        },
+        {
+            url: "https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-2.png",
+            desc: "Shape editor"
+        },
+        {
+            url: "https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-8.png",
+            desc: "Matrix view"
+        },
+        {
+            url: "https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-6.png",
+            desc: "Synchronization"
+        },
+        {
+            url: "https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-3.png",
+            desc: "Table view"
+        },
+        {
+            url: "https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-4.png",
+            desc: "Nesting"
+        }
+    ];
+
     constructor(private http:Http){ }
 
     ngOnInit(): void {

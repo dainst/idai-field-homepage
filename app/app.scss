@@ -242,3 +242,19 @@ a:hover {
 .sidebar-metadata-label {
   width: 80% !important;
 }
+
+.carousel-caption {
+  color: #333;
+}
+
+.carousel-indicators li {
+  background-color: rgba(51,51,51,0.5);
+}
+
+.carousel-indicators .active {
+  background-color: #333;
+}
+
+.carousel-control {
+  background-color: #333;
+}
