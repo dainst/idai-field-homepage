@@ -12,7 +12,7 @@ import {DownloadComponent} from "./download/download.component";
 const routes: Routes = [
     {
         path: '',
-        component: WelcomeComponent,
+        component: DownloadComponent,
     },
     {
         path: 'download',

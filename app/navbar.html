@@ -13,33 +13,17 @@
         <img src="img/logo.png" style="height:38px; width:38px; float:left; margin-right:12px;">
         <div class="brand-text">
             <span style="color: #ccc; font-size:90%; font-weight:300;">iDAI.</span>field
-            <small style="color: #ccc;">2.0</small>
         </div>
     </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav" style="margin-top: 2px;">
-            <li class="nav-item">
-                <a class="nav-link" href="#" routerLink="/resources">Ressourcen</a>
-            </li>
-            <li class="nav-item" *ngIf="username == undefined">
-                <a class="nav-link" href="#" routerLink="/sign_in">Anmelden</a>
-            </li>
-            <li class="nav-item" *ngIf="username != undefined">
-                <a class="nav-link" href="#" (click)="signOut()">{{username}}</a>
-            </li>
+
         </ul>
     </div>
 
     <div class="navbar-text navbar-right">
         <messages></messages>
-
-        <form class="form-inline">
-            <a class="btn btn-outline-secondary" href="#" routerLink="/download">
-                <span class="fa fa-download"></span>
-                Download iDAI.field
-            </a>
-        </form>
     </div>
 
 </nav>
