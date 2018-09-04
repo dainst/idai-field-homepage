@@ -29,6 +29,7 @@ import {IdaiFieldAppConfigurator} from 'idai-components-2/idai-field-model';
 import {SignInComponent} from './sign-in-component';
 import {AuthService} from './auth-service';
 import {WelcomeSidebarComponent} from './welcome/welcome-sidebar.component';
+import {DownloadComponent} from "./download/download.component";
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import {WelcomeSidebarComponent} from './welcome/welcome-sidebar.component';
         WelcomeComponent,
         NothingComponent,
         SignInComponent,
-        ProjectMapComponent
+        ProjectMapComponent,
+        DownloadComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -6,12 +6,17 @@ import {ProjectViewComponent} from "./project/project-view.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {NothingComponent} from "./listing/nothing.component";
 import {SignInComponent} from "./sign-in-component";
+import {DownloadComponent} from "./download/download.component";
 
 
 const routes: Routes = [
     {
         path: '',
         component: WelcomeComponent,
+    },
+    {
+        path: 'download',
+        component: DownloadComponent
     },
     {
         path: 'resources',
